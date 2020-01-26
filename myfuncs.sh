@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 # show original function
 function myfunc(){
     if [ $# -ne 0 ]; then
@@ -9,7 +9,7 @@ function myfunc(){
     echo "NAME"
     echo "    init_report"
     echo "USAGE"
-    echo "    $ init_report [LocalDirName] [ReportRepositoryName]"
+    echo "    $ init_report [DirectoryName]"
     echo -e "-----\n"
 
     echo "-----"
@@ -29,38 +29,47 @@ function myfunc(){
     echo -e "-----\n"
 }
 
-
 # clone report template from my repository
 function init_report(){
-    if [ $# -ne 2 ]; then
-	echo "ERROR: Invalid argument";
-	return 1;
+    if [ $# -eq 1 ]; then
+        if [ $1 = "-h" -o $1 = "--help" ]; then
+            echo "-----"
+            echo "NAME"
+            echo "    init_report"
+            echo "USAGE"
+            echo "    $ init_report [DirectoryName]"
+            echo -e "-----\n"
+        else
+            git clone git@github.com:Forest0923/report-template.git $1;
+            cd $1;
+            rm -rf .git;
+            rm README.md;
+            cd ../;
+        fi
+    else
+        echo "ERROR: Invalid argument";
+        return 1;
     fi
-    git clone git@github.com:forest0923/report-template.git $1;
-    if [ $? -ne 0 ]; then
-	return 1;
-    fi
-    echo -e "# finished cloning\n";
-    cd $1;
-    rm -rf .git;
-    echo "# $2" > README.md;
-    git init;
-    echo -e "# finished initialising\n";
-    git add *;
-    echo -e "# finished adding\n";
-    git commit -m "first commit";
-    echo -e "# finished commiting\n";
-    git remote add origin git@github.com:forest0923/$2.git;
-    git push -u origin master;
-    cd ..;
 }
 
 # platex
 function mkpdf(){
     if [ $# -eq 1 ]; then
-	FILENAME=$1
-	SPLITNAME=${FILENAME%\.tex}
-	sed -i -e "s/\\documentclass\[a4paper,\ draft\]{jsarticle}/\documentclass[a4paper]{jsarticle}/" $SPLITNAME.tex
+        if [ $1 = "-h" -o $1 = "--help" ]; then
+            echo "-----";
+            echo "NAME";
+            echo "    mkpdf";
+            echo "USAGE";
+            echo "    $ mkpdf [OPTION] [FILE]";
+            echo "OPTION";
+            echo "    -d, --draft";
+            echo -e "-----\n";
+            return 0;
+        else
+    	    FILENAME=$1
+    	    SPLITNAME=${FILENAME%\.tex}
+    	    sed -i -e "s/\\documentclass\[a4paper,\ draft\]{jsarticle}/\documentclass[a4paper]{jsarticle}/" $SPLITNAME.tex
+        fi
         
     elif [ $# -eq 2 ]; then
 	if [ $1 = "-d" -o $1 = "--draft" ]; then
@@ -94,9 +103,23 @@ function mkpdf(){
 }
 
 function rm_latex_useless(){
-    if [ $# -ne 0 ]; then
+    if [ $# -eq 0 ]; then
+        rm *.log *.aux *.cls *.dvi 2> /dev/null
+    elif [ $# -eq 1 ]; then
+        if [ $1 = "-h" -o $1 = "--help" ]; then
+            echo "-----"
+            echo "NAME"
+            echo "    rm_latex_useless"
+            echo "USAGE"
+            echo "    $ rm_latex_useless"
+            echo -e "-----\n"
+            return 0
+        else
+            echo "ERROR: Invalid argument"
+            return 1
+        fi
+    else
 	echo "ERROR: Invalid argument"
 	return 1
     fi
-    rm *.log *.aux *.cls *.dvi 2> /dev/null
 }
