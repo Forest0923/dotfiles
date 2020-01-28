@@ -47,15 +47,15 @@ set hlsearch
 " key map
 inoremap ( ()<left>
 inoremap () ()
-inoremap (<Enter> ()<left><CR><ESC><S-o>
+inoremap (<Enter> ()<left><CR><BS><ESC><S-o>
 
 inoremap { {}<left>
 inoremap {} {}
-inoremap {<Enter> {}<left><CR><ESC><S-o>
+inoremap {<Enter> {}<left><CR><BS><ESC><S-o>
 
 inoremap [ []<left>
 inoremap [] []
-inoremap [<Enter> []<left><CR><ESC><S-o>
+inoremap [<Enter> []<left><CR><BS><ESC><S-o>
 
 inoremap ' ''<left>
 inoremap '' ''
