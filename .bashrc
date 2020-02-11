@@ -120,3 +120,9 @@ fi
 if [ -f ~/dotfiles/myfuncs.sh ]; then
   source ~/dotfiles/myfuncs.sh
 fi
+
+if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    LS_COLORS="${LS_COLORS}:ow=01;34";
+    export LS_COLORS;
+    cd ~;
+fi
