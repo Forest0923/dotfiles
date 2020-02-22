@@ -8,8 +8,6 @@ function myfunc(){
     echo "-----"
     echo "[NAME]"
     echo "- init_report"
-    echo "- mkpdf"
-    echo "- rm_latex_useless"
     echo -e "-----\n"
 }
 
@@ -33,79 +31,5 @@ function init_report(){
     else
         echo "ERROR: Invalid argument";
         return 1;
-    fi
-}
-
-# platex
-function mkpdf(){
-    if [ $# -eq 1 ]; then
-        if [ $1 = "-h" -o $1 = "--help" ]; then
-            echo "-----";
-            echo "NAME";
-            echo "    mkpdf";
-            echo "USAGE";
-            echo "    $ mkpdf [OPTION] [FILE]";
-            echo "OPTION";
-            echo "    -d, --draft";
-            echo -e "-----\n";
-            return 0;
-        else
-            FILENAME=$1
-            SPLITNAME=${FILENAME%\.tex}
-            sed -i -e "s/\\documentclass\[a4paper,\ draft\]{jsarticle}/\documentclass[a4paper]{jsarticle}/" $SPLITNAME.tex
-        fi
-        
-    elif [ $# -eq 2 ]; then
-        if [ $1 = "-d" -o $1 = "--draft" ]; then
-            FILENAME=$2
-        elif [ $2 = "-d" -o $2 = "--draft" ]; then
-            FILENAME=$1
-        else
-            echo "ERROR: Invalid argument"
-            echo "comand: mkpdf [OPTION(-d, -draft)] [FILENAME]"
-            return 1
-        fi
-    SPLITNAME=${FILENAME%\.tex}
-    sed -i -e "s/\\documentclass\[a4paper\]{jsarticle}/\documentclass[a4paper, draft]{jsarticle}/" $SPLITNAME.tex
-    
-    else
-        echo "ERROR: Invalid argument"
-        echo "comand: mkpdf [OPTION(-d, -draft)] [FILENAME]"
-        return 1
-    fi
-
-    echo -en "$SPLITNAME.tex -> $SPLITNAME.dvi\n[1]"
-    platex -interaction=nonstopmode -shell-escape $SPLITNAME.tex > /dev/null
-    
-    if [ $? -ne 0 ]; then
-        echo -e "\nERROR: platex"
-        return 1
-    fi
-   
-    echo  "[2]"
-    platex -interaction=nonstopmode -shell-escape $SPLITNAME.tex > /dev/null
-    dvipdfmx -f ptex-ipaex.map $SPLITNAME.dvi
-    rm_latex_useless
-}
-
-function rm_latex_useless(){
-    if [ $# -eq 0 ]; then
-        rm *.log *.aux *.cls *.dvi 2> /dev/null
-    elif [ $# -eq 1 ]; then
-        if [ $1 = "-h" -o $1 = "--help" ]; then
-            echo "-----"
-            echo "NAME"
-            echo "    rm_latex_useless"
-            echo "USAGE"
-            echo "    $ rm_latex_useless"
-            echo -e "-----\n"
-            return 0
-        else
-            echo "ERROR: Invalid argument"
-            return 1
-        fi
-    else
-    echo "ERROR: Invalid argument"
-    return 1
     fi
 }
