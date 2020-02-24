@@ -11,6 +11,8 @@ set autoread
 set hidden
 set showcmd
 language C
+" bell off
+set belloff=all
 
 
 "=====
