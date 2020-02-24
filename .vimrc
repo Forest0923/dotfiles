@@ -35,6 +35,12 @@ set shiftwidth=4
 set smarttab
 set smartindent
 
+let _currentfile=expand("%:r")
+if _currentfile == 'Makefile'
+    set noexpandtab
+endif
+
+
 "=======
 " Search
 " 検索文字列が小文字=>大文字小文字の区別なし
@@ -48,14 +54,17 @@ set hlsearch
 "========
 " key map
 inoremap ( ()<left>
+inoremap (<right> (<right>
 inoremap () ()
 inoremap (<Enter> ()<left><CR><BS><ESC><S-o>
 
 inoremap { {}<left>
+inoremap {<right> {<right>
 inoremap {} {}
 inoremap {<Enter> {}<left><CR><BS><ESC><S-o>
 
 inoremap [ []<left>
+inoremap [<right> [<right>
 inoremap [] []
 inoremap [<Enter> []<left><CR><BS><ESC><S-o>
 
