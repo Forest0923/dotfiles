@@ -54,22 +54,29 @@ set hlsearch
 inoremap ( ()<left>
 inoremap (<right> (<right>
 inoremap () ()
+inoremap (<BS> (<BS>
 inoremap (<Enter> ()<left><CR><BS><ESC><S-o>
 
 inoremap { {}<left>
 inoremap {<right> {<right>
 inoremap {} {}
+inoremap {<BS> {<BS>
 inoremap {<Enter> {}<left><CR><BS><ESC><S-o>
 
 inoremap [ []<left>
 inoremap [<right> [<right>
 inoremap [] []
+inoremap [<BS> [<BS>
 inoremap [<Enter> []<left><CR><BS><ESC><S-o>
 
 inoremap ' ''<left>
+inoremap '<right> '<right>
+inoremap '<BS> '<BS>
 inoremap '' ''
 
 inoremap " ""<left>
+inoremap "<right> "<right>
+inoremap "<BS> "<BS>
 inoremap "" ""
 
 nnoremap j gj
