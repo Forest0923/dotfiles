@@ -89,5 +89,5 @@ nnoremap <Up>   gk
 "=======
 " scroll
 set whichwrap=b,s,h,l,<,>,[,]
-set scrolloff=5
+set scrolloff=8
 
