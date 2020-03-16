@@ -19,6 +19,8 @@ set belloff=all
 " line
 set number
 set cursorline
+hi CursorLine term=none cterm=bold ctermbg=none
+hi CursorLineNr term=bold cterm=bold ctermfg=yellow
 set virtualedit=onemore
 set showmatch
 
