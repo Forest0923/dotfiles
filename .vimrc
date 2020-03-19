@@ -13,6 +13,8 @@ set showcmd
 language C
 " bell off
 set belloff=all
+" Clipboard
+set clipboard=unnamedplus
 
 
 "=====
@@ -53,6 +55,7 @@ set incsearch
 set wrapscan
 set hlsearch
 
+
 "========
 " key map
 inoremap ( ()<left>
@@ -87,6 +90,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
+
 
 "=======
 " scroll
