@@ -16,13 +16,10 @@ set belloff=all
 " Clipboard
 set clipboard=unnamedplus
 
-
 "=====
 " line
 set number
 set cursorline
-hi CursorLine term=none cterm=bold ctermbg=none
-hi CursorLineNr term=bold cterm=bold ctermfg=yellow
 set virtualedit=onemore
 set showmatch
 
@@ -96,4 +93,10 @@ nnoremap <Up>   gk
 " scroll
 set whichwrap=b,s,h,l,<,>,[,]
 set scrolloff=8
+
+"============
+" ColorScheme
+autocmd ColorScheme * hi CursorLine term=none cterm=bold ctermbg=none
+autocmd ColorScheme * hi CursorLineNr term=bold cterm=bold ctermfg=yellow
+colorscheme elflord
 
