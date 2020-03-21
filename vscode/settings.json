@@ -8,6 +8,7 @@
     "editor.cursorStyle": "block",
     "editor.cursorSurroundingLines": 7,
     "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.acceptSuggestionOnEnter": "off",
     "workbench.startupEditor": "none",
     "breadcrumbs.enabled": true,
     "window.menuBarVisibility": "hidden",
