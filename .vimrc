@@ -1,6 +1,7 @@
 "==================
 " File encode utf-8
 set fenc=utf-8
+set encoding=utf-8
 " backup fileを作らない
 set nobackup
 " swap fileを作らない
