@@ -1,5 +1,5 @@
 default:
-	echo $(HOME)
+	make all
 
 bash:
 	ln -snfvb $(HOME)/dotfiles/.bashrc $(HOME)/.bashrc
@@ -18,3 +18,11 @@ vscode:
 	ln -snfvb $(HOME)/dotfiles/code/settings.json $(HOME)/.config/Code/User/settings.json
 	ln -snfvb $(HOME)/dotfiles/code/keybindings.json $(HOME)/.config/Code/User/keybindings.json
 
+all:
+	make bash
+	make zsh
+	make vim
+	make emacs
+	make tmux
+	make alacritty
+	make vscode

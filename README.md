@@ -1,8 +1,13 @@
 # dotfiles
-bashやemacs，vimなどの設定ファイルを保存する．
 
-|file name|description|
+|File|Notes|
 |:-|:-|
-|setup.sh|シンボリックリンクを作る|
-|myfuncs.sh|オリジナルの関数定義|
-
+|Makefile||
+|.bashrc|Latest version.|
+|.bashrc~|Old version.|
+|.zshrc||
+|.vimrc||
+|.emacs||
+|.tmux|It needs `powerline`.|
+|.alacritty.yml||
+|code/keybindings.json,<br>code/settings.json|Settings for VSCode|
