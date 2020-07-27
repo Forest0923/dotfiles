@@ -1,0 +1,98 @@
+// https://aka.ms/terminal-documentation
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "defaultProfile": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+
+    // https://aka.ms/terminal-global-settings
+    "copyOnSelect": false,
+    "copyFormatting": false,
+    "experimental.rendering.forceFullRepaint": true,
+    "theme": "dark",
+
+    // https://aka.ms/terminal-profile-settings
+    "profiles":
+    {
+        "defaults":
+        {
+            "cursorShape": "filledBox",
+            "useAcrylic": true,
+            "acrylicOpacity": 0.7,
+            "closeOnExit": "always"
+        },
+        "list":
+        [
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name": "Windows PowerShell",
+                "commandline": "powershell.exe",
+                "hidden": false
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name": "cmd",
+                "commandline": "cmd.exe",
+                "hidden": false
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+                "hidden": false,
+                "name": "Ubuntu-20.04",
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "//wsl$/Ubuntu-20.04/home/mori"
+            },
+            {
+                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "//wsl$/Debian/home/mori"
+            }
+        ]
+    },
+
+    // https://aka.ms/terminal-color-schemes
+    "schemes": [
+        {
+            "name": "Tommorow Night Bright",
+
+            "background": "#000000",
+            "foreground": "#eaeaea",
+
+            "black":   "#000000",
+            "red":     "#d54e53",
+            "green":   "#b9ca4a",
+            "yellow":  "#e6c547",
+            "blue":    "#7aa6da",
+            "purple":  "#c397d8",
+            "cyan":    "#70c0ba",
+            "white":   "#424242",
+
+            "brightBlack":   "#666666",
+            "brightRed":     "#ff3334",
+            "brightGreen":   "#9ec400",
+            "brightYellow":  "#e7c547",
+            "brightBlue":    "#7aa6da",
+            "brightPurple":  "#b77ee0",
+            "brightCyan":    "#54ced6",
+            "brightWhite":   "#2a2a2a"
+        }
+    ],
+
+    // https://aka.ms/terminal-keybindings
+    "keybindings":
+    [
+        { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+shift+c" },
+        { "command": "paste", "keys": "ctrl+shift+v" },
+        { "command": "find", "keys": "ctrl+shift+f" },
+        { "command": "closeTab", "keys": "ctrl+w"},
+        { "command": "nextTab", "keys": "ctrl+pagedown"},
+        { "command": "prevTab", "keys": "ctrl+pageup"},
+        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+    ]
+}
