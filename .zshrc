@@ -35,4 +35,3 @@ PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1
 zstyle :compinstall filename '/home/mori/.zshrc'
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
