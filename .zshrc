@@ -20,6 +20,8 @@ alias llh='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias tree='tree -C'
+
 alias up='cd ..'
 
 # Prompt
