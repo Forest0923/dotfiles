@@ -31,13 +31,14 @@ alias tree='tree -C'
 alias up='cd ..'
 
 # Prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+zstyle ':vcs_info:git:*' formats '(%b) '
+
 autoload -U colors && colors
-PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%# "
-# RPROMPT="[%{$fg_no_bold[yellow]%}%?%{$reset_color%}]"
-# powerline-daemon -q
-# POWERLINE_BASH_CONTINUATION=1
-# POWERLINE_BASH_SELECT=1
-# . /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
+PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}\${vcs_info_msg_0_}%# "
 
 # Auto-complete
 zstyle :compinstall filename '/home/mori/.zshrc'
