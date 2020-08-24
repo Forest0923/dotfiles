@@ -31,14 +31,19 @@ alias tree='tree -C'
 alias up='cd ..'
 
 # Prompt
+## git
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 zstyle ':vcs_info:git:*' formats '(%b) '
-
+## ssh
+if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]];then
+    ISSSH="%K{yellow}%F{black}SSH%k%f"
+fi
+## color
 autoload -U colors && colors
-PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}\${vcs_info_msg_0_}%# "
+PROMPT="${ISSSH}%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}\${vcs_info_msg_0_}%# "
 
 # Auto-complete
 zstyle :compinstall filename '/home/mori/.zshrc'
