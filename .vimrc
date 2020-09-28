@@ -2,13 +2,12 @@
 " File encode utf-8
 set fenc=utf-8
 set encoding=utf-8
-" backup fileを作らない
+" No backup file required
 set nobackup
-" swap fileを作らない
+" No swap file required
 set noswapfile
-" ファイルの変更時に自動で読み込む
+" Auto read when file is edited
 set autoread
-" バッファが編集中でも他のファイルを開ける
 set hidden
 set showcmd
 language C
@@ -16,6 +15,7 @@ language C
 set belloff=all
 " Clipboard
 set clipboard=unnamedplus
+
 
 "=====
 " line
@@ -29,18 +29,23 @@ set showmatch
 " Highlight
 syntax enable
 
+
 "============
 " Indent, Tab
-set expandtab
-set tabstop=4
-set shiftwidth=4
+set noexpandtab
+set tabstop=8
+set shiftwidth=8
 set smarttab
 set smartindent
-
-let _currentfile=expand("%:r")
-if _currentfile == 'Makefile'
-    set noexpandtab
+if has ("autocmd")
+	filetype plugin on
+	filetype indent on
+	"autocmd FileType rust		setlocal tabstop=4 shiftwidth=4 noexpandtab
 endif
+"let _currentfile=expand("%:r")
+"if _currentfile == 'Makefile'
+"    set noexpandtab
+"endif
 
 
 "=======
