@@ -33,11 +33,11 @@ DropdownHeight=53
 DropdownAlwaysShowTabs=FALSE
 ColorForeground=#eaeaea
 ColorCursor=#eaeaea
-ColorPalette=#000000;#d54e53;#b9ca4a;#e7c547;#7aa6da;#c397d8;#70c0b1;#ffffff;#000000;#d54e53;#b9ca4a;#e7c547;#7aa6da;#c397d8;#70c0b1;#ffffff
+ColorPalette=#000000;#d54e53;#b9ca4a;#e7c547;#7aa6da;#c397d8;#70c0b1;#ffffff;#666666;#ff3334;#9ec400;#e7c547;#7aa6da;#b77ee0;#54ced6;#ffffff;
 TitleMode=TERMINAL_TITLE_HIDE
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 BackgroundDarkness=0.750000
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-FontName=Source Code Pro Medium 14
+FontName=Source Code Pro Medium 12
 TabActivityTimeout=0
 
