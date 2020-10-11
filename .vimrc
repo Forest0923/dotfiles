@@ -39,13 +39,9 @@ set smarttab
 set smartindent
 if has ("autocmd")
 	filetype plugin on
-	filetype indent on
-	"autocmd FileType rust		setlocal tabstop=4 shiftwidth=4 noexpandtab
+	autocmd FileType rust	setlocal tabstop=4 shiftwidth=4 expandtab
+	autocmd FileType python	setlocal tabstop=4 shiftwidth=4 expandtab
 endif
-"let _currentfile=expand("%:r")
-"if _currentfile == 'Makefile'
-"    set noexpandtab
-"endif
 
 
 "=======
@@ -100,9 +96,9 @@ nnoremap <Up>   gk
 set whichwrap=b,s,h,l,<,>,[,]
 set scrolloff=8
 
+
 "============
 " ColorScheme
 autocmd ColorScheme * hi CursorLine term=none cterm=bold ctermbg=none
 autocmd ColorScheme * hi CursorLineNr term=bold cterm=bold ctermfg=yellow
 colorscheme elflord
-
