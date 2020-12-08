@@ -15,6 +15,8 @@ language C
 set belloff=all
 " Clipboard
 set clipboard=unnamedplus
+" mouse
+set mouse=a
 
 
 "=====
@@ -95,7 +97,7 @@ nnoremap <Up>   gk
 " scroll
 set whichwrap=b,s,h,l,<,>,[,]
 set scrolloff=8
-
+set ttymouse=xterm2
 
 "============
 " ColorScheme

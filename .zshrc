@@ -1,5 +1,5 @@
 # tmux
-if [ "$TMUX" = "" ]; then
+if [[ "$TMUX" = "" && $TERM_PROGRAM != "vscode" ]]; then
 	tmux;
 fi
 
