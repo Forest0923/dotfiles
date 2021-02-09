@@ -5,7 +5,7 @@ window:
     columns: 80
     lines: 24
   decorations: none
-  # GTK theme variant (Linux/BSD only)
+  startup_mode: Maximized
   gtk_theme_variant: dark
 
 # Font configuration
@@ -28,9 +28,9 @@ font:
 
   size: 12.0
 
-# If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
+# Color Theme (Tomorrow night bright + VS Code)
 colors:
   # Default colors
   primary:
@@ -60,7 +60,7 @@ colors:
     white:   '#e5e5e5'
 
 # Background opacity
-background_opacity: 0.85
+background_opacity: 0.75
 
 selection:
   save_to_clipboard: true
@@ -77,6 +77,7 @@ shell:
   #   - -c
   #   - tmux
 
+# Mouse bindings
 mouse:
   url:
     launcher:
@@ -84,12 +85,10 @@ mouse:
       args: []
 
 # Key bindings
-# Tips: `showkey --scancodes`.
 key_bindings:
-  - { key: V,	mods: Control|Shift,	action: Paste            }
-  - { key: C,	mods: Control|Shift,	action: Copy             }
-  - { key: Key0,	mods: Control,	action: ResetFontSize    }
-  - { key: Colon,	mods: Control,	action: IncreaseFontSize }
-  - { key: Semicolon,	mods: Control,	action: DecreaseFontSize }
-  - { key: N,	mods: Control|Shift,	action: SpawnNewInstance }
-
+  - { key: V,		mods: Control|Shift,	action: Paste            }
+  - { key: C,		mods: Control|Shift,	action: Copy             }
+  - { key: Key0,	mods: Control,		action: ResetFontSize    }
+  - { key: Colon,	mods: Control,		action: IncreaseFontSize }
+  - { key: Semicolon,	mods: Control,		action: DecreaseFontSize }
+  - { key: N,		mods: Control|Shift,	action: SpawnNewInstance }
