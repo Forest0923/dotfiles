@@ -23,6 +23,6 @@ all:
 	make alacritty
 
 root:
-	sudo ln -snfvb $(USER)/dotfiles/.zshrc $(HOME)/.zshrc
-	sudo ln -snfvb $(USER)/dotfiles/.vimrc $(HOME)/.vimrc
-	sudo ln -snfvb $(USER)/dotfiles/.tmux.conf $(HOME)/.tmux.conf
+	sudo ln -snfvb $(HOME)/dotfiles/.zshrc /root/.zshrc
+	sudo ln -snfvb $(HOME)/dotfiles/.vimrc /root/.vimrc
+	sudo ln -snfvb $(HOME)/dotfiles/.tmux.conf /root/.tmux.conf
