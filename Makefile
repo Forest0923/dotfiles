@@ -21,3 +21,8 @@ all:
 	#make emacs
 	make tmux
 	make alacritty
+
+root:
+	sudo ln -snfvb $(USER)/dotfiles/.zshrc $(HOME)/.zshrc
+	sudo ln -snfvb $(USER)/dotfiles/.vimrc $(HOME)/.vimrc
+	sudo ln -snfvb $(USER)/dotfiles/.tmux.conf $(HOME)/.tmux.conf

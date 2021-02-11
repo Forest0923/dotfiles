@@ -56,6 +56,6 @@ autoload -U colors && colors
 PROMPT="${ISSSH}%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~%{$reset_color%}\${vcs_info_msg_0_} %# "
 
 # Auto-complete
-zstyle :compinstall filename '/home/mori/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 compinit
