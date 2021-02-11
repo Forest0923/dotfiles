@@ -14,15 +14,10 @@ tmux:
 alacritty:
 	ln -snfvb $(HOME)/dotfiles/.alacritty.yml $(HOME)/.alacritty.yml
 
-vscode:
-	ln -snfvb $(HOME)/dotfiles/code/settings.json $(HOME)/.config/Code/User/settings.json
-	ln -snfvb $(HOME)/dotfiles/code/keybindings.json $(HOME)/.config/Code/User/keybindings.json
-
 all:
 	make bash
 	make zsh
 	make vim
-	make emacs
+	#make emacs
 	make tmux
 	make alacritty
-	make vscode
