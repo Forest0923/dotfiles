@@ -59,6 +59,11 @@ colors:
     cyan:    '#29b8db'
     white:   '#e5e5e5'
 
+  # Selection
+  selection:
+    text: CellBackground
+    background: CellForeground
+
 # Background opacity
 background_opacity: 0.75
 

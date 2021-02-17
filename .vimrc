@@ -104,3 +104,4 @@ set ttymouse=xterm2
 autocmd ColorScheme * hi CursorLine term=none cterm=bold ctermbg=none
 autocmd ColorScheme * hi CursorLineNr term=bold cterm=bold ctermfg=yellow
 colorscheme peachpuff
+highlight Visual cterm=reverse ctermbg=none
