@@ -59,3 +59,11 @@ PROMPT="${ISSSH}%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yel
 zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 compinit
+
+# Import local files
+if [[ -d $HOME/dotfiles/local ]];then
+	array=($(find $HOME/dotfiles/local -type f))
+	for each_file in ${array[@]}; do
+		source ${each_file}
+	done
+fi
