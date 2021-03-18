@@ -1,6 +1,11 @@
 # tmux
-if [[ "$TMUX" = "" && $TERM_PROGRAM != "vscode" ]]; then
-	tmux;
+if [[ $TMUX = "" && $TERM_PROGRAM != "vscode" ]]; then
+	ID="`tmux list-sessions | cut -d: -f1`"
+	if [[ -z "$ID" ]]; then
+		tmux new-session
+	else
+		tmux attach
+	fi
 fi
 
 # Lines configured by zsh-newuser-install
