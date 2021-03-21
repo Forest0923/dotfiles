@@ -31,7 +31,8 @@ else
 fi
 
 if [[ -f /usr/bin/bat ]]; then
-	alias cat='bat'
+	alias cat='bat --paging=never'
+	alias less='bat --paging=always'
 fi
 
 alias grep='grep --color=auto'
