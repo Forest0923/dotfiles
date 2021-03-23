@@ -4,6 +4,7 @@
     "defaultProfile": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
 
     // https://aka.ms/terminal-global-settings
+    "launchMode": "maximized",
     "copyOnSelect": false,
     "copyFormatting": false,
     "experimental.rendering.forceFullRepaint": true,
