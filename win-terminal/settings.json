@@ -1,6 +1,7 @@
 // https://aka.ms/terminal-documentation
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
+    // Default wsl ubuntu 20.04
     "defaultProfile": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
 
     // https://aka.ms/terminal-global-settings
@@ -17,7 +18,7 @@
         {
             "cursorShape": "filledBox",
             "useAcrylic": true,
-            "acrylicOpacity": 0.7,
+            "acrylicOpacity": 1.0,
             "closeOnExit": "always"
         },
         "list":
@@ -60,28 +61,30 @@
     // https://aka.ms/terminal-color-schemes
     "schemes": [
         {
-            "name": "Tommorow Night Bright",
+            //"name": "Tommorow Night Bright",
 
             "background": "#000000",
             "foreground": "#eaeaea",
 
             "black":   "#000000",
             "red":     "#d54e53",
-            "green":   "#b9ca4a",
+            "green":   "#23d18b",
             "yellow":  "#e6c547",
-            "blue":    "#7aa6da",
+            "blue":    "#3b8eea",
             "purple":  "#c397d8",
             "cyan":    "#70c0ba",
-            "white":   "#424242",
+            "white":   "#e5e5e5",
 
             "brightBlack":   "#666666",
             "brightRed":     "#ff3334",
-            "brightGreen":   "#9ec400",
+            "brightGreen":   "#0dbc79",
             "brightYellow":  "#e7c547",
-            "brightBlue":    "#7aa6da",
+            "brightBlue":    "#2472c8",
             "brightPurple":  "#b77ee0",
-            "brightCyan":    "#54ced6",
-            "brightWhite":   "#2a2a2a"
+            "brightCyan":    "#29b8db",
+            "brightWhite":   "#e5e5e5",
+
+            "cursorColor": "#FFFFFF"
         }
     ],
 
