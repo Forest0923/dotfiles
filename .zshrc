@@ -70,7 +70,9 @@ fi
 
 # WSL
 if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-    LS_COLORS="${LS_COLORS}:ow=01;34";
-    export LS_COLORS;
-    cd ~;
+	LS_COLORS="${LS_COLORS}:ow=01;34";
+	export LS_COLORS;
+	if [[ -z "$TMUX" ]]; then
+		cd ~;
+	fi
 fi
