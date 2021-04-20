@@ -1,6 +1,11 @@
 # tmux
-if [[ -z "$TMUX" && $TERM_PROGRAM != "vscode" ]]; then
+if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
 	tmux attach 2> /dev/null || tmux new
+fi
+
+# Path
+if [[ -z $TMUX ]]; then
+	export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Lines configured by zsh-newuser-install
@@ -72,7 +77,7 @@ fi
 if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 	LS_COLORS="${LS_COLORS}:ow=01;34";
 	export LS_COLORS;
-	if [[ -z "$TMUX" ]]; then
+	if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
 		cd ~;
 	fi
 fi
