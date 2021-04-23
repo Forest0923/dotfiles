@@ -1,11 +1,11 @@
-# tmux
-if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
-	tmux attach 2> /dev/null || tmux new
-fi
-
 # Path
 if [[ -z $TMUX ]]; then
 	export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# tmux
+if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
+	tmux attach 2> /dev/null || tmux new
 fi
 
 # Lines configured by zsh-newuser-install
