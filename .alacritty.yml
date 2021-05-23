@@ -84,7 +84,7 @@ shell:
 
 # Mouse bindings
 mouse:
-  url:
+  hints:
     launcher:
       program: xdg-open
       args: []
