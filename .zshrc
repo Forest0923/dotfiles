@@ -47,9 +47,12 @@ alias up='cd ..'
 
 alias refresh_shell='exec $SHELL -l'
 
-if [[ -f /usr/bin/youtube-dl ]]; then
+if [ -f /usr/bin/youtube-dl ] || [ -f $HOME/.local/bin/youtube-dl ]; then
 	youtube_mp3() {
 		youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0 $1
+	}
+	youtube_mp4() {
+		youtube-dl $1 -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]"
 	}
 fi
 
