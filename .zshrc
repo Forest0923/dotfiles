@@ -21,7 +21,7 @@ bindkey "${terminfo[kdch1]}" delete-char
 bindkey '^[[Z' reverse-menu-complete
 
 # Alias
-if [[ -f /usr/bin/exa ]]; then
+if [ -f /usr/bin/exa ]; then
 	alias ls='exa'
 	alias l='exa'
 	alias ll='exa -alh --git'
@@ -35,7 +35,7 @@ else
 	alias tree='tree -C'
 fi
 
-if [[ -f /usr/bin/bat ]]; then
+if [ -f /usr/bin/bat ]; then
 	alias cat='bat'
 fi
 
