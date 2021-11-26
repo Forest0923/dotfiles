@@ -56,6 +56,10 @@ if [ -f /usr/bin/youtube-dl ] || [ -f $HOME/.local/bin/youtube-dl ]; then
 	}
 fi
 
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+	source /usr/share/nvm/init-nvm.sh
+fi
+
 # Prompt
 ## git
 autoload -Uz vcs_info
