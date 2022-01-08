@@ -5,7 +5,7 @@ fi
 
 # tmux
 if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
-	tmux attach 2> /dev/null || tmux new
+	tmux attach 2> /dev/null || cd ~;tmux new
 fi
 
 # Lines configured by zsh-newuser-install
