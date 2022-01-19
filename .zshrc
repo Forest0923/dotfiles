@@ -1,11 +1,11 @@
 # Path
-if [[ -z $TMUX ]]; then
+if [ -z $TMUX ]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # tmux
 if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
-	tmux attach 2> /dev/null || cd ~;tmux new
+	tmux attach 2> /dev/null || {cd ~; tmux new}
 fi
 
 # Lines configured by zsh-newuser-install
@@ -81,7 +81,7 @@ autoload -Uz compinit
 compinit
 
 # Import local files
-if [[ -d $HOME/dotfiles/local ]];then
+if [ -d $HOME/dotfiles/local ];then
 	array=($(find $HOME/dotfiles/local -type f))
 	for each_file in ${array[@]}; do
 		source ${each_file}
@@ -92,7 +92,7 @@ fi
 if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 	LS_COLORS="${LS_COLORS}:ow=01;34";
 	export LS_COLORS;
-	if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
+	if [ -z $TMUX && $TERM_PROGRAM != "vscode" ]; then
 		cd ~;
 	fi
 fi
