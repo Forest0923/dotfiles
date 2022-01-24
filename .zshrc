@@ -60,6 +60,9 @@ if [ -f /usr/share/nvm/init-nvm.sh ]; then
 	source /usr/share/nvm/init-nvm.sh
 fi
 
+## OCaml
+[[ ! -r /home/mori/.opam/opam-init/init.zsh ]] || source /home/mori/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
 # Prompt
 ## git
 autoload -Uz vcs_info
