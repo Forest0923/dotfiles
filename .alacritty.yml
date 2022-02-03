@@ -7,6 +7,7 @@ window:
   decorations: none
   startup_mode: Maximized
   gtk_theme_variant: dark
+  opacity: 0.7
 
 # Font configuration
 font:
@@ -63,9 +64,6 @@ colors:
   selection:
     text: CellBackground
     background: CellForeground
-
-# Background opacity
-background_opacity: 0.75
 
 selection:
   save_to_clipboard: true
