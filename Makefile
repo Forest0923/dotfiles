@@ -11,13 +11,14 @@ tmux:
 	ln -snfvb $(HOME)/dotfiles/.tmux.conf $(HOME)/.tmux.conf
 alacritty:
 	ln -snfvb $(HOME)/dotfiles/.alacritty.yml $(HOME)/.alacritty.yml
+wezterm:
+	ln -snfvb $(HOME)/dotfiles/.wezterm.lua $(HOME)/.wezterm.lua
 
 deploy:
 	make bash
 	make zsh
 	make vim
 	make tmux
-	make alacritty
 
 root:
 	sudo ln -snfvb $(HOME)/dotfiles/.zshrc /root/.zshrc
