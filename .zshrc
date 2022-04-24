@@ -60,6 +60,11 @@ if [ -f /usr/share/nvm/init-nvm.sh ]; then
 	source /usr/share/nvm/init-nvm.sh
 fi
 
+ssh-add-keys() {
+	eval `ssh-agent -s`
+	find ~/.ssh -type f -name "id_*" -not -name "*.pub" | zargs ssh-add
+}
+
 ## OCaml
 [[ ! -r /home/mori/.opam/opam-init/init.zsh ]] || source /home/mori/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
