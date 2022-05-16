@@ -62,10 +62,10 @@ fi
 
 ssh-add-keys() {
 	eval `ssh-agent -s`
-	find ~/.ssh -type f -name "id_*" -not -name "*.pub" | zargs ssh-add
+	find ~/.ssh -type f -name "id_*" -not -name "*.pub" | xargs ssh-add
 }
 
-## OCaml
+# OCaml
 [[ ! -r /home/mori/.opam/opam-init/init.zsh ]] || source /home/mori/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # Prompt
