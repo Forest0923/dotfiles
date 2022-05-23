@@ -5,4 +5,5 @@ return {
 	window_decorations		= "NONE",
 	enable_tab_bar			= false,
 	exit_behavior			= "Close",
+	font_size			= 10,
 }

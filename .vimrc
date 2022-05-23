@@ -106,7 +106,9 @@ autocmd ColorScheme * hi CursorLineNr term=bold cterm=bold ctermfg=yellow
 if has('gui_running')
 	colorscheme torte
 else
-	colorscheme peachpuff
+	colorscheme default
 endif
 highlight Visual cterm=reverse ctermbg=none
 highlight Search cterm=reverse ctermbg=none
+"highlight Normal cterm=reverse ctermbg=none
+"highlight NonText cterm=reverse ctermbg=none
