@@ -68,6 +68,8 @@ ssh-add-keys() {
 # OCaml
 [[ ! -r /home/mori/.opam/opam-init/init.zsh ]] || source /home/mori/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
+export GIT_EDITOR=vim
+
 # Prompt
 ## git
 autoload -Uz vcs_info
