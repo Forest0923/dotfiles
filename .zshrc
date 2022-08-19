@@ -65,6 +65,39 @@ ssh-add-keys() {
 	find ~/.ssh -type f -name "id_*" -not -name "*.pub" | xargs ssh-add
 }
 
+wol_home() {
+	if [ -f $HOME/dotfiles/local/config.toml ]; then
+		$HOME/dotfiles/scripts/wol.py
+		echo "Magic packet is sended!"
+	else
+		echo "~/dotfiles/local/config.toml doesn't exist!"
+	fi
+}
+
+ipmitool_on() {
+	if [ ! -e `where ipmitool` ]; then
+		echo "ipmitool not found"
+		return 1
+	fi
+	if [ $# = 0 ]; then
+		echo "Please specify username"
+		return 1
+	fi
+	$HOME/dotfiles/scripts/ipmitool.py $1 "on"
+}
+
+ipmitool_off() {
+	if [ ! -e `where ipmitool` ]; then
+		echo "ipmitool not found"
+		return 1
+	fi
+	if [ $# = 0 ]; then
+		echo "Please specify username"
+		return 1
+	fi
+	$HOME/dotfiles/scripts/ipmitool.py $1 "off"
+}
+
 # OCaml
 [[ ! -r /home/mori/.opam/opam-init/init.zsh ]] || source /home/mori/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
@@ -90,11 +123,10 @@ zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 compinit
 
-# Import local files
-if [ -d $HOME/dotfiles/local ];then
-	array=($(find $HOME/dotfiles/local -type f))
-	for each_file in ${array[@]}; do
-		source ${each_file}
+# Import Scripts
+if [ -d $HOME/dotfiles/scripts ];then
+	for src in `find $HOME/dotfiles/scripts -type f -name "*.sh"`; do
+		source ${src}
 	done
 fi
 
