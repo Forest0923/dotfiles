@@ -1,38 +1,45 @@
-"==================
-" File encode utf-8
+syntax enable
+filetype plugin indent on
+
+
+"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+call plug#begin()
+	Plug 'rust-lang/rust.vim'
+	Plug 'rhysd/vim-clang-format'
+call plug#end()
+
+let g:rustfmt_autosave = 1
+let g:clang_format#auto_format = 1
+
+language C
 set fenc=utf-8
 set encoding=utf-8
-" No backup file required
 set nobackup
-" No swap file required
 set noswapfile
-" Auto read when file is edited
 set autoread
 set hidden
 set showcmd
-language C
-" bell off
 set belloff=all
-" Clipboard
 set clipboard=unnamedplus
-" mouse
 set mouse=a
+set wildmode=longest,list,full
 
-
-"=====
 " line
 set number
 set cursorline
 set virtualedit=onemore
 set showmatch
 
+" Status Line
+set statusline=%F
+set statusline+=%m
+set statusline+=%h
+set statusline+=%=
+set statusline+=\ %Y[%{&fileencoding}]
+set statusline+=[%l/%L(%p%%)]
+set laststatus=2
 
-"==========
-" Highlight
-syntax enable
-
-
-"============
 " Indent, Tab
 set noexpandtab
 set tabstop=8
@@ -46,18 +53,14 @@ if has ("autocmd")
 endif
 
 
-"=======
 " Search
-" 検索文字列が小文字=>大文字小文字の区別なし
 set ignorecase
-" 検索文字列が大文字=>大文字小文字の区別あり
 set smartcase
 set incsearch
 set wrapscan
 set hlsearch
 
 
-"========
 " key map
 inoremap ( ()<left>
 inoremap (<right> (<right>
@@ -93,13 +96,11 @@ nnoremap <Down> gj
 nnoremap <Up>   gk
 
 
-"=======
 " scroll
 set whichwrap=b,s,h,l,<,>,[,]
 set scrolloff=8
 set ttymouse=xterm2
 
-"============
 " ColorScheme
 autocmd ColorScheme * hi CursorLine term=none cterm=bold ctermbg=none
 autocmd ColorScheme * hi CursorLineNr term=bold cterm=bold ctermfg=yellow
