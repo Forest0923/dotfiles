@@ -99,7 +99,7 @@ nnoremap <Up>   gk
 " scroll
 set whichwrap=b,s,h,l,<,>,[,]
 set scrolloff=8
-set ttymouse=xterm2
+" set ttymouse=xterm2
 
 " ColorScheme
 autocmd ColorScheme * hi CursorLine term=none cterm=bold ctermbg=none
