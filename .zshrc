@@ -80,7 +80,7 @@ ipmitool_on() {
 		return 1
 	fi
 	if [ $# = 0 ]; then
-		echo "Please specify username"
+		echo "Please specify hostname"
 		return 1
 	fi
 	$HOME/dotfiles/scripts/ipmitool.py $1 "on"
@@ -92,7 +92,7 @@ ipmitool_off() {
 		return 1
 	fi
 	if [ $# = 0 ]; then
-		echo "Please specify username"
+		echo "Please specify hostname"
 		return 1
 	fi
 	$HOME/dotfiles/scripts/ipmitool.py $1 "off"
