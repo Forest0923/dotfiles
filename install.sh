@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 source lib/inquirer.sh
@@ -36,7 +36,10 @@ link_root() {
 		case $i in
 			"bash")	sudo ln -snf $DOTFILES/.bashrc /root/.bashrc ;;
 			"zsh")	sudo ln -snf $DOTFILES/.zshrc /root/.zshrc ;;
-			"vim")	sudo ln -snf $DOTFILES/.vimrc /root/.vimrc ;;
+			"vim")
+				sudo ln -snf $DOTFILES/.vimrc /root/.vimrc
+				sudo ln -s $HOME/.vim /root/.vim
+				;;
 			"neovim")
 				if [ ! -d /root/.config/nvim ]; then
 					sudo mkdir /root/.config/nvim
