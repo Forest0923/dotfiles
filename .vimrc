@@ -110,6 +110,6 @@ else
 	colorscheme default
 endif
 highlight Visual cterm=reverse ctermbg=none
-highlight Search cterm=reverse ctermbg=none
+highlight Search ctermfg=0 ctermbg=3
 "highlight Normal cterm=reverse ctermbg=none
 "highlight NonText cterm=reverse ctermbg=none
