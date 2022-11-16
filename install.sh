@@ -5,49 +5,43 @@ source lib/inquirer.sh
 
 DOTFILES=`pwd`
 
-link_user() {
-	software=('bash' 'zsh' 'vim' 'neovim' 'tmux' 'alacritty' 'wezterm')
-	checkbox_input "Choose what you want!:" software selected_software
+link_files() {
+	software_user=('bash' 'zsh' 'vim' 'neovim' 'tmux' 'alacritty' 'wezterm')
+	software_root=('bash' 'zsh' 'vim' 'neovim' 'tmux')
+
+	checkbox_input "Choose what you want!:" software_$1 selected_software
+
+	case $1 in
+		"user")
+			DIR=$HOME
+			SUDO=""
+			;;
+		"root") DIR=/root
+			SUDO=sudo
+			;;
+		*)	exit ;;
+	esac
 
 	for i in ${selected_software[@]}; do
 		case $i in
-			"bash")	ln -snf $DOTFILES/.bashrc $HOME/.bashrc ;;
-			"zsh")	ln -snf $DOTFILES/.zshrc $HOME/.zshrc ;;
-			"vim")	ln -snf $DOTFILES/.vimrc $HOME/.vimrc ;;
-			"neovim")
-				if [ ! -d $HOME/.config/nvim ]; then
-					mkdir $HOME/.config/nvim
-				fi
-				ln -snf $DOTFILES/.vimrc $HOME/.config/nvim/init.vim
-				;;
-			"tmux")	ln -snf $DOTFILES/.tmux.conf $HOME/.tmux.conf ;;
-			"alacritty")	ln -snf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml ;;
-			"wezterm")	ln -snf $DOTFILES/.wezterm.lua $HOME/.wezterm.lua ;;
-			*) ;;
-		esac
-	done
-}
-
-link_root() {
-	software=('bash' 'zsh' 'vim' 'neovim' 'tmux')
-	checkbox_input "Choose what you want!:" software selected_software
-
-	for i in ${selected_software[@]}; do
-		case $i in
-			"bash")	sudo ln -snf $DOTFILES/.bashrc /root/.bashrc ;;
-			"zsh")	sudo ln -snf $DOTFILES/.zshrc /root/.zshrc ;;
+			"bash")	$SUDO ln -snf $DOTFILES/.bashrc $DIR/.bashrc ;;
+			"zsh")	$SUDO ln -snf $DOTFILES/.zshrc $DIR/.zshrc ;;
 			"vim")
-				sudo ln -snf $DOTFILES/.vimrc /root/.vimrc
-				sudo ln -s $HOME/.vim /root/.vim
+				$SUDO ln -snf $DOTFILES/.vimrc $DIR/.vimrc
+				if [ ! -f ~/.vim/autoload/plug.vim ]; then
+					curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+						https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+				fi
+				$SUDO ln -sf ~/.vim /root 2> /dev/null || true
 				;;
 			"neovim")
-				if [ ! -d /root/.config/nvim ]; then
-					sudo mkdir /root/.config/nvim
-				fi
-				sudo ln -snf $DOTFILES/.vimrc /root/.config/nvim/init.vim
+				! $SUDO test -d $DIR/.config/nvim && $SUDO mkdir $DIR/.config/nvim
+				$SUDO ln -snf $DOTFILES/.vimrc $DIR/.config/nvim/init.vim
 				;;
-			"tmux")	sudo ln -snf $DOTFILES/.tmux.conf /root/.tmux.conf ;;
-			*) ;;
+			"tmux")	$SUDO ln -snf $DOTFILES/.tmux.conf $DIR/.tmux.conf ;;
+			"alacritty")	ln -snf $DOTFILES/.alacritty.yml $DIR/.alacritty.yml ;;
+			"wezterm")	ln -snf $DOTFILES/.wezterm.lua $DIR/.wezterm.lua ;;
+			*);;
 		esac
 	done
 }
@@ -55,5 +49,5 @@ link_root() {
 target=('user' 'root')
 list_input "Choose your target environment:" target selected_target
 
-link_$selected_target
+link_files $selected_target
 

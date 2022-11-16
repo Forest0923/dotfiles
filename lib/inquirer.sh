@@ -478,7 +478,7 @@ _list_input() {
   stty -echo
   tput civis
 
-  print "${normal}${green}?${normal} ${bold}${prompt}${normal} ${dim}(Use arrow keys)${normal}"
+  print "${normal}${green}?${normal} ${bold}${prompt}${normal}"
 
   for i in $(gen_index ${#_list_options[@]}); do
     tput cub "$(tput cols)"
