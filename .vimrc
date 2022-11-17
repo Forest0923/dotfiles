@@ -11,6 +11,18 @@ call plug#end()
 
 let g:rustfmt_autosave = 1
 let g:clang_format#auto_format = 1
+let g:clang_format#style_options = {
+	\ "BasedOnStyle": "LLVM",
+	\ "AlignConsecutiveMacros": "AcrossEmptyLinesAndComments",
+	\ "AlignConsecutiveAssignments": "AcrossEmptyLinesAndComments",
+	\ "AlignConsecutiveBitFields": "AcrossEmptyLinesAndComments",
+	\ "AlignConsecutiveDeclarations": "AcrossEmptyLinesAndComments",
+	\ "AlignOperands": "true",
+	\ "IndentWidth": "8",
+	\ "UseTab": "Always",
+	\ "BreakBeforeBraces": "Linux",
+	\ "AllowShortIfStatementsOnASingleLine": "false",
+	\ "IndentCaseLabels": "false"}
 
 language C
 set fenc=utf-8
