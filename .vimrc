@@ -1,9 +1,6 @@
 syntax enable
 filetype plugin indent on
 
-
-"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin()
 	Plug 'rust-lang/rust.vim'
 	Plug 'rhysd/vim-clang-format'
@@ -11,18 +8,25 @@ call plug#end()
 
 let g:rustfmt_autosave = 1
 let g:clang_format#auto_format = 1
+let g:clang_format#detect_style_file = 0
 let g:clang_format#style_options = {
-	\ "BasedOnStyle": "LLVM",
-	\ "AlignConsecutiveMacros": "AcrossEmptyLinesAndComments",
+	\ "AlignArrayOfStructures": "None",
 	\ "AlignConsecutiveAssignments": "AcrossEmptyLinesAndComments",
 	\ "AlignConsecutiveBitFields": "AcrossEmptyLinesAndComments",
 	\ "AlignConsecutiveDeclarations": "AcrossEmptyLinesAndComments",
+	\ "AlignConsecutiveMacros": "AcrossEmptyLinesAndComments",
 	\ "AlignOperands": "true",
+	\ "AllowShortBlocksOnASingleLine": "Empty",
+	\ "AllowShortEnumsOnASingleLine": "false",
+	\ "AllowShortFunctionsOnASingleLine": "Empty",
+	\ "AllowShortIfStatementsOnASingleLine": "false",
+	\ "BasedOnStyle": "LLVM",
+	\ "BreakBeforeBraces": "Linux",
+	\ "IndentCaseLabels": "false",
 	\ "IndentWidth": "8",
 	\ "UseTab": "Always",
-	\ "BreakBeforeBraces": "Linux",
-	\ "AllowShortIfStatementsOnASingleLine": "false",
-	\ "IndentCaseLabels": "false"}
+	\ }
+
 
 language C
 set fenc=utf-8
