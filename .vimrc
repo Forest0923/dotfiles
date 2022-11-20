@@ -9,6 +9,7 @@ call plug#end()
 let g:rustfmt_autosave = 1
 let g:clang_format#auto_format = 1
 let g:clang_format#detect_style_file = 0
+" clang-format >= v14.0
 let g:clang_format#style_options = {
 	\ "AlignArrayOfStructures": "None",
 	\ "AlignConsecutiveAssignments": "AcrossEmptyLinesAndComments",
@@ -26,7 +27,21 @@ let g:clang_format#style_options = {
 	\ "IndentWidth": "8",
 	\ "UseTab": "Always",
 	\ }
-
+" clang-format < v14.0
+" let g:clang_format#style_options = {
+" 	\ "AlignConsecutiveAssignments": "true",
+" 	\ "AlignConsecutiveDeclarations": "true",
+" 	\ "AlignConsecutiveMacros": "true",
+" 	\ "AlignOperands": "true",
+" 	\ "AllowShortBlocksOnASingleLine": "Empty",
+" 	\ "AllowShortFunctionsOnASingleLine": "Empty",
+" 	\ "AllowShortIfStatementsOnASingleLine": "false",
+" 	\ "BasedOnStyle": "LLVM",
+" 	\ "BreakBeforeBraces": "Linux",
+" 	\ "IndentCaseLabels": "false",
+" 	\ "IndentWidth": "8",
+" 	\ "UseTab": "Always",
+" 	\ }
 
 language C
 set fenc=utf-8
