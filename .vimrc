@@ -92,7 +92,7 @@ set wrapscan
 set hlsearch
 
 
-" key map
+" map
 inoremap ( ()<left>
 inoremap (<right> (<right>
 inoremap () ()
@@ -126,6 +126,7 @@ nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
 
+cmap w!! w !sudo tee > /dev/null %
 
 " scroll
 set whichwrap=b,s,h,l,<,>,[,]
