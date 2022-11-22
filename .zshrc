@@ -47,6 +47,10 @@ alias up='cd ..'
 
 alias refresh_shell='exec $SHELL -l'
 
+supp() {
+	"$@" &> /dev/null < /dev/null
+}
+
 if [ -f /usr/bin/youtube-dl ] || [ -f $HOME/.local/bin/youtube-dl ]; then
 	youtube_mp3() {
 		youtube-dl $1 -f bestaudio --extract-audio
