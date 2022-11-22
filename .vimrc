@@ -4,6 +4,10 @@ filetype plugin indent on
 call plug#begin()
 	Plug 'rust-lang/rust.vim'
 	Plug 'rhysd/vim-clang-format'
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'mattn/vim-lsp-settings'
+	Plug 'prabirshrestha/asyncomplete.vim'
+	Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
 let g:rustfmt_autosave = 1
