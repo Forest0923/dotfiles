@@ -102,6 +102,35 @@ ipmitool_off() {
 	$HOME/dotfiles/scripts/ipmitool.py $1 "off"
 }
 
+resize_monitor() {
+	OUTPUT=`xrandr | grep "connected primary" | awk '{print $1}'`
+	case $1 in
+		"4k")
+			xrandr --output $OUTPUT --mode 3840x2160 --scale 0.75x0.75
+			;;
+		"wqhd")
+			xrandr --output $OUTPUT --mode 2560x1440 --scale 1.25x1.25
+			;;
+		"home")
+			xrandr \
+				--output eDP1 --mode 2560x1440 --scale 1.25x1.25 --pos 0x0 \
+				--output $OUTPUT --mode 1920x1080 --scale 2x2 --pos 3200x0
+			;;
+		"asg")
+			xrandr \
+				--output eDP1 --mode 2560x1440 --scale 1.25x1.25 --pos 0x2880 \
+				--output $OUTPUT --mode 2560x1440 --scale 2x2 --pos 0x0
+			;;
+		*)
+			echo "Usage:"
+			echo "    resize_monitor 4k     # for 4k monitor"
+			echo "    resize_monitor wqhd   # for wqhd monitor"
+			echo "    resize_monitor home   # home setting"
+			echo "    resize_monitor asg    # asg setting"
+			;;
+	esac
+}
+
 # OCaml
 [[ ! -r /home/mori/.opam/opam-init/init.zsh ]] || source /home/mori/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
