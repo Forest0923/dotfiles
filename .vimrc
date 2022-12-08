@@ -97,39 +97,10 @@ set hlsearch
 
 
 " map
-inoremap ( ()<left>
-inoremap (<right> (<right>
-inoremap () ()
-inoremap (<BS> (<BS>
-inoremap (<Enter> ()<left><CR><BS><ESC><S-o>
-
-inoremap { {}<left>
-inoremap {<right> {<right>
-inoremap {} {}
-inoremap {<BS> {<BS>
-inoremap {<Enter> {}<left><CR><BS><ESC><S-o>
-
-inoremap [ []<left>
-inoremap [<right> [<right>
-inoremap [] []
-inoremap [<BS> [<BS>
-inoremap [<Enter> []<left><CR><BS><ESC><S-o>
-
-inoremap ' ''<left>
-inoremap '<right> '<right>
-inoremap '<BS> '<BS>
-inoremap '' ''
-
-inoremap " ""<left>
-inoremap "<right> "<right>
-inoremap "<BS> "<BS>
-inoremap "" ""
-
 nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
-
 cmap w!! w !sudo tee > /dev/null %
 
 " scroll
@@ -147,5 +118,4 @@ else
 endif
 highlight Visual cterm=reverse ctermbg=none
 highlight Search ctermfg=0 ctermbg=3
-"highlight Normal cterm=reverse ctermbg=none
-"highlight NonText cterm=reverse ctermbg=none
+highlight CursorColumn ctermbg=8
