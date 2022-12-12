@@ -103,23 +103,24 @@ ipmitool_off() {
 }
 
 resize_monitor() {
-	OUTPUT=`xrandr | grep "connected primary" | awk '{print $1}'`
+	PRIMARY=`xrandr | grep "connected primary" | awk '{print $1}'`
+	SECONDARY=`xrandr | grep "connected [0-9]\+x" | awk '{print $1}'`
 	case $1 in
 		"4k")
-			xrandr --output $OUTPUT --mode 3840x2160 --scale 0.75x0.75
+			xrandr --output $PRIMARY --mode 3840x2160 --scale 0.75x0.75
 			;;
 		"wqhd")
-			xrandr --output $OUTPUT --mode 2560x1440 --scale 1.25x1.25
+			xrandr --output $PRIMARY --mode 2560x1440 --scale 1.25x1.25
 			;;
 		"home")
 			xrandr \
 				--output eDP1 --mode 2560x1440 --scale 1.25x1.25 --pos 0x0 \
-				--output $OUTPUT --mode 1920x1080 --scale 2x2 --pos 3200x0
+				--output $SECONDARY --mode 3840x2160 --scale 1.5x1.5 --pos 3200x0
 			;;
 		"asg")
 			xrandr \
 				--output eDP1 --mode 2560x1440 --scale 1.25x1.25 --pos 0x2880 \
-				--output $OUTPUT --mode 2560x1440 --scale 2x2 --pos 0x0
+				--output $SECONDARY --mode 2560x1440 --scale 2x2 --pos 0x0
 			;;
 		*)
 			echo "Usage:"
