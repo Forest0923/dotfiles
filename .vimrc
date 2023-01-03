@@ -86,6 +86,7 @@ if has ("autocmd")
 	autocmd FileType rust	setlocal tabstop=4 shiftwidth=4 expandtab
 	autocmd FileType python	setlocal tabstop=4 shiftwidth=4 expandtab
 endif
+set backspace=indent,eol,start
 
 
 " Search

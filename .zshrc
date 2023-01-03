@@ -1,11 +1,17 @@
 # Path
-if [ -z $TMUX ]; then
+if [ -d /home/deck/.root/bin ]; then
+	if [[ ! :$PATH: =~ .*:/home/deck/\.root/bin:.* ]]; then
+		export PATH="/home/deck/.root/bin:$PATH"
+	fi
+fi
+
+if [[ ! :$PATH: =~ .*:$HOME/\.local/bin:.* ]]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # tmux
 if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
-	tmux attach 2> /dev/null || {cd ~; tmux new}
+	tmux attach 2> /dev/null || {cd ~; tmux new} 2> /dev/null
 fi
 
 # Lines configured by zsh-newuser-install
