@@ -120,8 +120,8 @@ resize_monitor() {
 			;;
 		"home")
 			xrandr \
-				--output eDP1 --mode 2560x1440 --scale 1.25x1.25 --pos 0x0 \
-				--output $SECONDARY --mode 3840x2160 --scale 1.5x1.5 --pos 3200x0
+				--output eDP1 --mode 2560x1440 --scale 1.25x1.25 --pos 0x3240 \
+				--output $SECONDARY --mode 3840x2160 --scale 1.5x1.5 --pos 0x0
 			;;
 		"asg")
 			xrandr \
