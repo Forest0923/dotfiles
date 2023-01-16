@@ -57,12 +57,12 @@ supp() {
 	"$@" &> /dev/null < /dev/null
 }
 
-if [ -f /usr/bin/youtube-dl ] || [ -f $HOME/.local/bin/youtube-dl ]; then
+if [ -f /usr/bin/yt-dlp ] || [ -f $HOME/.local/bin/yt-dlp ]; then
 	youtube_mp3() {
-		youtube-dl $1 -f bestaudio --extract-audio
+		yt-dlp $1 -f bestaudio --extract-audio
 	}
 	youtube_mp4() {
-		youtube-dl $1 -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]"
+		yt-dlp $1 -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]"
 	}
 fi
 
