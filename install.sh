@@ -35,7 +35,11 @@ link_files() {
 				$SUDO ln -sf ~/.vim /root 2> /dev/null || true
 				;;
 			"neovim")
-				! $SUDO test -d $DIR/.config/nvim && $SUDO mkdir $DIR/.config/nvim
+				if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
+					sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+						https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+				fi
+				! $SUDO test -d $DIR/.config/nvim && $SUDO mkdir -p $DIR/.config/nvim
 				$SUDO ln -snf $DOTFILES/.vimrc $DIR/.config/nvim/init.vim
 				;;
 			"tmux")	$SUDO ln -snf $DOTFILES/.tmux.conf $DIR/.tmux.conf ;;

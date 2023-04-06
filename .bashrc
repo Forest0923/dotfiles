@@ -2,11 +2,20 @@
 # ~/.bashrc
 #
 
+# tmux
+if [ -z $TMUX ]; then
+	if [ $TERM_PROGRAM == vscode ]; then
+		tmux new 2> /dev/null
+	else
+		tmux attach 2> /dev/null || `cd ~; tmux new` 2> /dev/null
+	fi
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 # Alias
-if [[ -f /usr/bin/exa ]]; then
+if type exa > /dev/null 2>&1; then
 	alias ls='exa'
 	alias l='exa'
 	alias ll='exa -alh --git'

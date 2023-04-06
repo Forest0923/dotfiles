@@ -10,8 +10,12 @@ if [[ ! :$PATH: =~ .*:$HOME/\.local/bin:.* ]]; then
 fi
 
 # tmux
-if [[ -z $TMUX && $TERM_PROGRAM != "vscode" ]]; then
-	tmux attach 2> /dev/null || {cd ~; tmux new} 2> /dev/null
+if [ -z $TMUX ]; then
+	if [ $TERM_PROGRAM == vscode ]; then
+		tmux new 2> /dev/null
+	else
+		tmux attach 2> /dev/null || {cd ~; tmux new} 2> /dev/null
+	fi
 fi
 
 # Lines configured by zsh-newuser-install
@@ -27,7 +31,7 @@ bindkey "${terminfo[kdch1]}" delete-char
 bindkey '^[[Z' reverse-menu-complete
 
 # Alias
-if [ -f /usr/bin/exa ]; then
+if type exa > /dev/null 2>&1; then
 	alias ls='exa'
 	alias l='exa'
 	alias ll='exa -alh --git'
@@ -41,7 +45,7 @@ else
 	alias tree='tree -C'
 fi
 
-if [ -f /usr/bin/bat ]; then
+if type bat > /dev/null 2>&1 ; then
 	alias cat='bat'
 fi
 
@@ -57,7 +61,7 @@ supp() {
 	"$@" &> /dev/null < /dev/null
 }
 
-if [ -f /usr/bin/yt-dlp ] || [ -f $HOME/.local/bin/yt-dlp ]; then
+if type yt-dlp > /dev/null 2>&1; then
 	youtube_mp3() {
 		yt-dlp $1 -f bestaudio --extract-audio
 	}
@@ -139,7 +143,7 @@ resize_monitor() {
 }
 
 # OCaml
-[[ ! -r /home/mori/.opam/opam-init/init.zsh ]] || source /home/mori/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 export GIT_EDITOR=vim
 
