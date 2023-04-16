@@ -4,7 +4,7 @@
 
 # tmux
 if [ -z $TMUX ]; then
-	if [ $TERM_PROGRAM == vscode ]; then
+	if [[ $TERM_PROGRAM == vscode ]]; then
 		tmux new 2> /dev/null
 	else
 		tmux attach 2> /dev/null || `cd ~; tmux new` 2> /dev/null
