@@ -1,4 +1,4 @@
-# Path
+# Variables
 if [ -d /home/deck/.root/bin ]; then
 	if [[ ! :$PATH: =~ .*:/home/deck/\.root/bin:.* ]]; then
 		export PATH="/home/deck/.root/bin:$PATH"
@@ -7,6 +7,12 @@ fi
 
 if [[ ! :$PATH: =~ .*:$HOME/\.local/bin:.* ]]; then
 	export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if type nvim > /dev/null 2>&1; then
+	export SUDO_EDITOR=nvim
+elif type vim > /dev/null 2>&1; then
+	export SUDO_EDITOR=vim
 fi
 
 # tmux

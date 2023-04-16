@@ -102,7 +102,6 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
-cmap w!! w !sudo tee > /dev/null %
 
 " scroll
 set whichwrap=b,s,h,l,<,>,[,]

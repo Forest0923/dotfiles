@@ -11,6 +11,13 @@ if [ -z $TMUX ]; then
 	fi
 fi
 
+# Variables
+if type nvim > /dev/null 2>&1; then
+	export SUDO_EDITOR=nvim
+elif type vim > /dev/null 2>&1; then
+	export SUDO_EDITOR=vim
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
