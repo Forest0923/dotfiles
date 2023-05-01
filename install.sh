@@ -27,7 +27,11 @@ for i in ${selected_software[@]}; do
 					https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 			fi
 			;;
-		"tmux")	ln -snf $DOTFILES/.tmux.conf $HOME/.tmux.conf ;;
+		"tmux")
+			ln -snf $DOTFILES/.tmux.conf $HOME/.tmux.conf
+			ln -snf $DOTFILES/.tmux.osx.conf $HOME/.tmux.osx.conf
+			ln -snf $DOTFILES/.tmux.linux.conf $HOME/.tmux.linux.conf
+			;;
 		"alacritty")	ln -snf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml ;;
 		"wezterm")	ln -snf $DOTFILES/.wezterm.lua $HOME/.wezterm.lua ;;
 		*);;
