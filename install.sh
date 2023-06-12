@@ -11,7 +11,10 @@ checkbox_input "Choose what you want!:" software selected_software
 for i in ${selected_software[@]}; do
 	case $i in
 		"bash")	ln -snf $DOTFILES/.bashrc $HOME/.bashrc ;;
-		"zsh")	ln -snf $DOTFILES/.zshrc $HOME/.zshrc ;;
+		"zsh")
+			ln -snf $DOTFILES/.zshrc $HOME/.zshrc
+			ln -snf $DOTFILES/.zshrc.local $HOME/.zshrc.local
+			;;
 		"vim")
 			ln -snf $DOTFILES/.vimrc $HOME/.vimrc
 			if [ ! -f ~/.vim/autoload/plug.vim ]; then

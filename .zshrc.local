@@ -1,0 +1,121 @@
+# tmux
+if [ -z $TMUX ]; then
+	if [[ $TERM_PROGRAM == vscode ]]; then
+		tmux new 2> /dev/null
+	else
+		tmux attach 2> /dev/null || {cd ~; tmux new} 2> /dev/null
+	fi
+fi
+
+# Variables
+if [ -d /home/deck/.root/bin ]; then
+	if [[ ! :$PATH: =~ .*:/home/deck/\.root/bin:.* ]]; then
+		export PATH="/home/deck/.root/bin:$PATH"
+	fi
+fi
+
+if [[ ! :$PATH: =~ .*:$HOME/\.local/bin:.* ]]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if type nvim > /dev/null 2>&1; then
+	export SUDO_EDITOR=nvim
+elif type vim > /dev/null 2>&1; then
+	export SUDO_EDITOR=vim
+fi
+
+export GIT_EDITOR=vim
+
+# Alias
+if type exa > /dev/null 2>&1; then
+	alias ls='exa'
+	alias l='exa -l --git'
+	alias ll='exa -l --git'
+	alias lh='exa -lh --git'
+	alias la='exa -lah --git'
+	alias tree='exa -T'
+fi
+
+if type bat > /dev/null 2>&1 ; then
+	alias cat='bat'
+fi
+
+alias up='cd ..'
+
+alias refresh_shell='exec $SHELL -l'
+
+# Functions
+supp() {
+	"$@" &> /dev/null < /dev/null
+}
+
+if type yt-dlp > /dev/null 2>&1; then
+	youtube_mp3() {
+		yt-dlp $1 -f bestaudio --extract-audio
+	}
+	youtube_mp4() {
+		yt-dlp $1 -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]"
+	}
+fi
+
+ssh-add-keys() {
+	eval `ssh-agent -s`
+	find ~/.ssh -type f -name "id_*" -not -name "*.pub" | xargs ssh-add
+}
+
+wol_home() {
+	if [ -f $HOME/dotfiles/local/config.toml ]; then
+		$HOME/dotfiles/scripts/wol.py
+		echo "Magic packet is sended!"
+	else
+		echo "~/dotfiles/local/config.toml doesn't exist!"
+	fi
+}
+
+ipmitool_on() {
+	if [ ! -e `where ipmitool` ]; then
+		echo "ipmitool not found"
+		return 1
+	fi
+	if [ $# = 0 ]; then
+		echo "Please specify hostname"
+		return 1
+	fi
+	$HOME/dotfiles/scripts/ipmitool.py $1 "on"
+}
+
+ipmitool_off() {
+	if [ ! -e `where ipmitool` ]; then
+		echo "ipmitool not found"
+		return 1
+	fi
+	if [ $# = 0 ]; then
+		echo "Please specify hostname"
+		return 1
+	fi
+	$HOME/dotfiles/scripts/ipmitool.py $1 "off"
+}
+
+# OCaml
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+	source /usr/share/nvm/init-nvm.sh
+fi
+
+# Import Scripts
+if [ -d $HOME/dotfiles/scripts ];then
+	for src in `find $HOME/dotfiles/scripts -type f -name "*.sh"`; do
+		source ${src}
+	done
+fi
+
+# WSL
+if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+	LS_COLORS="${LS_COLORS}:ow=01;34";
+	export LS_COLORS;
+	if [[ -z $TMUX  &&  $TERM_PROGRAM != "vscode" ]]; then
+		cd ~;
+	fi
+fi
+
