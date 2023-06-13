@@ -7,6 +7,12 @@ if [ -z $TMUX ]; then
 	fi
 fi
 
+# Prompt
+zstyle ':prompt:grml:*:items:user' pre '%F{red}'
+zstyle ':prompt:grml:*:items:host' pre '%F{cyan}'
+zstyle ':prompt:grml:*:items:path' pre '%F{yellow}'
+zstyle ':prompt:grml:*:items:percent' pre '%f'
+
 # Variables
 if [ -d /home/deck/.root/bin ]; then
 	if [[ ! :$PATH: =~ .*:/home/deck/\.root/bin:.* ]]; then
