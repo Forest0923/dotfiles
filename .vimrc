@@ -119,3 +119,16 @@ endif
 highlight Visual cterm=reverse ctermbg=none
 highlight Search ctermfg=0 ctermbg=3
 highlight CursorColumn ctermbg=8
+
+
+" Shape of Cursor
+"if &term =~ 'xterm\|rxvt'
+if has('vim_starting')
+    " Insert mode
+    let &t_SI .= "\e[6 q"
+    " Normal mode
+    let &t_EI .= "\e[2 q"
+    " Replace mode
+    let &t_SR .= "\e[4 q"
+endif
+
