@@ -2,6 +2,10 @@
 # ~/.bashrc
 #
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
 # tmux
 if [ -z $TMUX ]; then
 	if [[ $TERM_PROGRAM == vscode ]]; then
@@ -18,15 +22,13 @@ elif type vim > /dev/null 2>&1; then
 	export SUDO_EDITOR=vim
 fi
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
 # Alias
 if type exa > /dev/null 2>&1; then
 	alias ls='exa'
-	alias l='exa'
-	alias ll='exa -alh --git'
-	alias la='exa -a'
+	alias l='exa -l --git'
+	alias ll='exa -l --git'
+	alias lh='exa -lh --git'
+	alias la='exa -lah --git'
 	alias tree='exa -T'
 else
 	alias ls='ls --color=auto'
@@ -51,3 +53,4 @@ if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     export LS_COLORS;
     cd ~;
 fi
+
