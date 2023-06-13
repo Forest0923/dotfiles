@@ -1,12 +1,3 @@
-# tmux
-if [ -z $TMUX ]; then
-	if [[ $TERM_PROGRAM == vscode ]]; then
-		tmux new 2> /dev/null
-	else
-		tmux attach 2> /dev/null || {cd ~; tmux new} 2> /dev/null
-	fi
-fi
-
 # Prompt
 zstyle ':prompt:grml:*:items:user' pre '%F{red}'
 zstyle ':prompt:grml:*:items:host' pre '%F{cyan}'

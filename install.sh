@@ -12,6 +12,7 @@ for i in ${selected_software[@]}; do
 	case $i in
 		"bash")	ln -snf $DOTFILES/.bashrc $HOME/.bashrc ;;
 		"zsh")
+			ln -snf $DOTFILES/.zshrc.pre $HOME/.zshrc.pre
 			ln -snf $DOTFILES/.zshrc $HOME/.zshrc
 			ln -snf $DOTFILES/.zshrc.local $HOME/.zshrc.local
 			;;
