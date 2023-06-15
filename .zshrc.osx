@@ -1,0 +1,3 @@
+if [[ ":$PATH:" != *":/usr/local/mysql/bin:"* ]]; then
+	export PATH=/usr/local/mysql/bin:$PATH
+fi

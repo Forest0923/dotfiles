@@ -1,4 +1,13 @@
-# tmux
+case `uname -s` in
+	"Darwin")
+		[[ -r $HOME/.zshrc.osx.pre ]] && . $HOME/.zshrc.osx.pre
+		;;
+	"Linux")
+		[[ -r $HOME/.zshrc.linux.pre ]] && . $HOME/.zshrc.linux.pre
+		;;
+	*);;
+esac
+
 if [ -z $TMUX ]; then
 	if [[ $TERM_PROGRAM == vscode ]]; then
 		tmux new 2> /dev/null

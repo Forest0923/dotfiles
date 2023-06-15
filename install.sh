@@ -13,8 +13,10 @@ for i in ${selected_software[@]}; do
 		"bash")	ln -snf $DOTFILES/.bashrc $HOME/.bashrc ;;
 		"zsh")
 			ln -snf $DOTFILES/.zshrc.pre $HOME/.zshrc.pre
+			ln -snf $DOTFILES/.zshrc.osx.pre $HOME/.zshrc.osx.pre
 			ln -snf $DOTFILES/.zshrc $HOME/.zshrc
 			ln -snf $DOTFILES/.zshrc.local $HOME/.zshrc.local
+			ln -snf $DOTFILES/.zshrc.osx $HOME/.zshrc.osx
 			;;
 		"vim")
 			ln -snf $DOTFILES/.vimrc $HOME/.vimrc

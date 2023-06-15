@@ -5,16 +5,6 @@ zstyle ':prompt:grml:*:items:path' pre '%F{yellow}'
 zstyle ':prompt:grml:*:items:percent' pre '%f'
 
 # Variables
-if [ -d /home/deck/.root/bin ]; then
-	if [[ ! :$PATH: =~ .*:/home/deck/\.root/bin:.* ]]; then
-		export PATH="/home/deck/.root/bin:$PATH"
-	fi
-fi
-
-if [[ ! :$PATH: =~ .*:$HOME/\.local/bin:.* ]]; then
-	export PATH="$HOME/.local/bin:$PATH"
-fi
-
 if type nvim > /dev/null 2>&1; then
 	export SUDO_EDITOR=nvim
 elif type vim > /dev/null 2>&1; then
@@ -23,7 +13,36 @@ fi
 
 export GIT_EDITOR=vim
 
-# Alias
+## Path
+if [ -d /home/deck/.root/bin ]; then
+	if [[ ! :$PATH: =~ .*:/home/deck/\.root/bin:.* ]]; then
+		export PATH="/home/deck/.root/bin:$PATH"
+	fi
+fi
+
+if [[ -d $HOME/.local/bin ]] && [[ ! :$PATH: =~ *:"$HOME/.local/bin":* ]]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+
+[[ -r $HOME/.cargo/env ]] && . "$HOME/.cargo/env"
+[[ -r $HOME/.opam/opam-init/init.zsh ]] && source $HOME/.opam/opam-init/init.zsh  &> /dev/null
+
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+	source /usr/share/nvm/init-nvm.sh
+fi
+
+# OS specific conf
+case `uname -s` in
+	"Darwin")
+		[[ -r $HOME/.zshrc.osx ]] && . $HOME/.zshrc.osx
+		;;
+	"Linux")
+		[[ -r $HOME/.zshrc.linux ]] && . $HOME/.zshrc.linux
+		;;
+	*);;
+esac
+
+# Aliases
 if type exa > /dev/null 2>&1; then
 	alias ls='exa'
 	alias l='exa -l --git'
@@ -38,8 +57,7 @@ if type bat > /dev/null 2>&1 ; then
 fi
 
 alias up='cd ..'
-
-alias refresh_shell='exec $SHELL -l'
+alias refsh='exec $SHELL -l'
 
 # Functions
 supp() {
@@ -92,13 +110,6 @@ ipmitool_off() {
 	fi
 	$HOME/dotfiles/scripts/ipmitool.py $1 "off"
 }
-
-# OCaml
-[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-if [ -f /usr/share/nvm/init-nvm.sh ]; then
-	source /usr/share/nvm/init-nvm.sh
-fi
 
 # Import Scripts
 if [ -d $HOME/dotfiles/scripts ];then
