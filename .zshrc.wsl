@@ -1,0 +1,5 @@
+LS_COLORS="${LS_COLORS}:ow=01;34";
+export LS_COLORS;
+if [[ -z $TMUX  &&  $TERM_PROGRAM != "vscode" ]]; then
+	cd ~;
+fi

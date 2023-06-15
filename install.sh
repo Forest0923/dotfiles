@@ -13,10 +13,26 @@ for i in ${selected_software[@]}; do
 		"bash")	ln -snf $DOTFILES/.bashrc $HOME/.bashrc ;;
 		"zsh")
 			ln -snf $DOTFILES/.zshrc.pre $HOME/.zshrc.pre
-			ln -snf $DOTFILES/.zshrc.osx.pre $HOME/.zshrc.osx.pre
 			ln -snf $DOTFILES/.zshrc $HOME/.zshrc
 			ln -snf $DOTFILES/.zshrc.local $HOME/.zshrc.local
-			ln -snf $DOTFILES/.zshrc.osx $HOME/.zshrc.osx
+			case `uname -s` in
+				"Darwin")
+					ln -snf $DOTFILES/.zshrc.osx.pre $HOME/.zshrc.osx.pre
+					ln -snf $DOTFILES/.zshrc.osx $HOME/.zshrc.osx
+					;;
+				"Linux")
+					case `uname -r` in
+						*"microsoft"*)
+							ln -snf $DOTFILES/.zshrc.wsl $HOME/.zshrc.wsl
+							;;
+						*"valve"*)
+							ln -snf $DOTFILES/.zshrc.steamos $HOME/.zshrc.steamos
+							;;
+						*);;
+					esac
+					;;
+				*);;
+			esac
 			;;
 		"vim")
 			ln -snf $DOTFILES/.vimrc $HOME/.vimrc
@@ -35,8 +51,15 @@ for i in ${selected_software[@]}; do
 			;;
 		"tmux")
 			ln -snf $DOTFILES/.tmux.conf $HOME/.tmux.conf
-			ln -snf $DOTFILES/.tmux.osx.conf $HOME/.tmux.osx.conf
-			ln -snf $DOTFILES/.tmux.linux.conf $HOME/.tmux.linux.conf
+			case `uname -s` in
+				"Darwin")
+					ln -snf $DOTFILES/.tmux.osx.conf $HOME/.tmux.osx.conf
+					;;
+				"Linux")
+					ln -snf $DOTFILES/.tmux.linux.conf $HOME/.tmux.linux.conf
+					;;
+				*);;
+			esac
 			;;
 		"alacritty")	ln -snf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml ;;
 		"wezterm")	ln -snf $DOTFILES/.wezterm.lua $HOME/.wezterm.lua ;;
