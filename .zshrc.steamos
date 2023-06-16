@@ -1,5 +1,6 @@
-if [ -d /home/deck/.root/bin ]; then
-	if [[ ! :$PATH: =~ .*:/home/deck/\.root/bin:.* ]]; then
-		export PATH="/home/deck/.root/bin:$PATH"
-	fi
+# Alias
+if [ -d /home/deck/.root ]; then
+	alias deckpacman='sudo pacman -r /home/deck/.root'
+	alias deckparu='sudo paru -r /home/deck/.root'
+	alias deckyay='sudo yay -r /home/deck/.root'
 fi

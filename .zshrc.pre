@@ -4,6 +4,12 @@ case `uname -s` in
 		;;
 	"Linux")
 		[[ -r $HOME/.zshrc.linux.pre ]] && . $HOME/.zshrc.linux.pre
+		case `uname -r` in
+			*"valve"*)
+				[[ -r $HOME/.zshrc.steamos.pre ]] && . $HOME/.zshrc.steamos.pre
+				;;
+			*);;
+		esac
 		;;
 	*);;
 esac

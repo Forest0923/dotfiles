@@ -26,6 +26,7 @@ for i in ${selected_software[@]}; do
 							ln -snf $DOTFILES/.zshrc.wsl $HOME/.zshrc.wsl
 							;;
 						*"valve"*)
+							ln -snf $DOTFILES/.zshrc.steamos.pre $HOME/.zshrc.steamos.pre
 							ln -snf $DOTFILES/.zshrc.steamos $HOME/.zshrc.steamos
 							;;
 						*);;
