@@ -126,3 +126,9 @@ if [ -d $HOME/dotfiles/scripts ];then
 	done
 fi
 
+if [ -d $HOME/dotfiles/local ];then
+	for src in `find $HOME/dotfiles/local -type f -name "*.sh"`; do
+		source ${src}
+	done
+fi
+
