@@ -73,7 +73,17 @@ for i in ${selected_software[@]}; do
 				*);;
 			esac
 			;;
-		"wezterm")	ln -snf $DOTFILES/.wezterm.lua $HOME/.wezterm.lua ;;
+		"wezterm")
+			case `uname -s` in
+				"Darwin")
+					ln -snf $DOTFILES/.wezterm.osx.lua $HOME/.wezterm.lua
+					;;
+				"Linux")
+					ln -snf $DOTFILES/.wezterm.lua $HOME/.wezterm.lua
+					;;
+				*);;
+			esac
+			;;
 		*);;
 	esac
 done
