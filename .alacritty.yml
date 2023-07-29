@@ -86,6 +86,9 @@ mouse:
       program: xdg-open
       args: []
 
+mouse_bindings:
+  - { mouse: Middle, action: ExpandSelection }
+
 # Key bindings
 key_bindings:
   - { key: V,		mods: Control|Shift,	action: Paste            }
