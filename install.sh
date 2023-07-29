@@ -62,7 +62,17 @@ for i in ${selected_software[@]}; do
 				*);;
 			esac
 			;;
-		"alacritty")	ln -snf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml ;;
+		"alacritty")
+			case `uname -s` in
+				"Darwin")
+					ln -snf $DOTFILES/.alacritty.osx.yml $HOME/.alacritty.yml
+					;;
+				"Linux")
+					ln -snf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml
+					;;
+				*);;
+			esac
+			;;
 		"wezterm")	ln -snf $DOTFILES/.wezterm.lua $HOME/.wezterm.lua ;;
 		*);;
 	esac
