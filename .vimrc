@@ -1,5 +1,6 @@
 syntax enable
 filetype plugin indent on
+lang en_US.UTF-8
 
 call plug#begin()
 	Plug 'rust-lang/rust.vim'
