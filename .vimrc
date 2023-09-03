@@ -2,52 +2,6 @@ syntax enable
 filetype plugin indent on
 lang en_US.UTF-8
 
-call plug#begin()
-	Plug 'rust-lang/rust.vim'
-	Plug 'rhysd/vim-clang-format'
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'mattn/vim-lsp-settings'
-	Plug 'prabirshrestha/asyncomplete.vim'
-	Plug 'prabirshrestha/asyncomplete-lsp.vim'
-call plug#end()
-
-let g:rustfmt_autosave = 1
-let g:clang_format#auto_format = 1
-let g:clang_format#detect_style_file = 0
-" clang-format >= v14.0
-let g:clang_format#style_options = {
-	\ "AlignArrayOfStructures": "None",
-	\ "AlignConsecutiveAssignments": "AcrossEmptyLinesAndComments",
-	\ "AlignConsecutiveBitFields": "AcrossEmptyLinesAndComments",
-	\ "AlignConsecutiveDeclarations": "AcrossEmptyLinesAndComments",
-	\ "AlignConsecutiveMacros": "AcrossEmptyLinesAndComments",
-	\ "AlignOperands": "true",
-	\ "AllowShortBlocksOnASingleLine": "Empty",
-	\ "AllowShortEnumsOnASingleLine": "false",
-	\ "AllowShortFunctionsOnASingleLine": "Empty",
-	\ "AllowShortIfStatementsOnASingleLine": "false",
-	\ "BasedOnStyle": "LLVM",
-	\ "BreakBeforeBraces": "Linux",
-	\ "IndentCaseLabels": "false",
-	\ "IndentWidth": "8",
-	\ "UseTab": "Always",
-	\ }
-" clang-format < v14.0
-" let g:clang_format#style_options = {
-" 	\ "AlignConsecutiveAssignments": "true",
-" 	\ "AlignConsecutiveDeclarations": "true",
-" 	\ "AlignConsecutiveMacros": "true",
-" 	\ "AlignOperands": "true",
-" 	\ "AllowShortBlocksOnASingleLine": "Empty",
-" 	\ "AllowShortFunctionsOnASingleLine": "Empty",
-" 	\ "AllowShortIfStatementsOnASingleLine": "false",
-" 	\ "BasedOnStyle": "LLVM",
-" 	\ "BreakBeforeBraces": "Linux",
-" 	\ "IndentCaseLabels": "false",
-" 	\ "IndentWidth": "8",
-" 	\ "UseTab": "Always",
-" 	\ }
-
 language C
 set fenc=utf-8
 set encoding=utf-8
@@ -131,5 +85,76 @@ if has('vim_starting')
     let &t_EI .= "\e[2 q"
     " Replace mode
     let &t_SR .= "\e[4 q"
+endif
+
+
+" Plugins
+call plug#begin()
+	Plug 'rust-lang/rust.vim'
+	Plug 'rhysd/vim-clang-format'
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'mattn/vim-lsp-settings'
+	Plug 'prabirshrestha/asyncomplete.vim'
+	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+	Plug 'mechatroner/rainbow_csv'
+	Plug 'keaising/im-select.nvim'
+	if has ('nvim')
+		Plug 'echasnovski/mini.nvim'
+	else
+		Plug 'cohama/lexima.vim'
+	endif
+call plug#end()
+
+let g:rustfmt_autosave = 1
+let g:clang_format#auto_format = 1
+let g:clang_format#detect_style_file = 0
+" clang-format >= v14.0
+let g:clang_format#style_options = {
+	\ "AlignArrayOfStructures": "None",
+	\ "AlignConsecutiveAssignments": "AcrossEmptyLinesAndComments",
+	\ "AlignConsecutiveBitFields": "AcrossEmptyLinesAndComments",
+	\ "AlignConsecutiveDeclarations": "AcrossEmptyLinesAndComments",
+	\ "AlignConsecutiveMacros": "AcrossEmptyLinesAndComments",
+	\ "AlignOperands": "true",
+	\ "AllowShortBlocksOnASingleLine": "Empty",
+	\ "AllowShortEnumsOnASingleLine": "false",
+	\ "AllowShortFunctionsOnASingleLine": "Empty",
+	\ "AllowShortIfStatementsOnASingleLine": "false",
+	\ "BasedOnStyle": "LLVM",
+	\ "BreakBeforeBraces": "Linux",
+	\ "IndentCaseLabels": "false",
+	\ "IndentWidth": "8",
+	\ "UseTab": "Always",
+	\ }
+
+if has ('nvim')
+""" BEGINING_OF_LUA_BLOCK
+lua <<EOF
+local os_name = vim.loop.os_uname().sysname
+
+if os_name == 'Linux' then
+require('im_select').setup {
+    default_im_select  = "keyboard-jp",
+    default_command = 'fcitx5-remote',
+    set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
+    set_previous_events = {},
+    keep_quiet_on_no_binary = false,
+    async_switch_im = true
+}
+elseif os_name == "Darwin" then
+require('im_select').setup {
+    default_im_select  = "com.apple.keylayout.ABC",
+    default_command = 'im-select',
+    set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
+    set_previous_events = {},
+    keep_quiet_on_no_binary = false,
+    async_switch_im = true
+}
+end
+
+require('mini.comment').setup()
+require('mini.pairs').setup()
+EOF
+""" END_OF_LUA_BLOCK
 endif
 
