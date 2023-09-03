@@ -128,7 +128,8 @@ let g:clang_format#style_options = {
 	\ }
 
 if has ('nvim')
-""" BEGINING_OF_LUA_BLOCK
+"""""""""""""""""""""""""""""
+""" BEGINING_OF_LUA_BLOCK """
 lua <<EOF
 local os_name = vim.loop.os_uname().sysname
 
@@ -144,7 +145,7 @@ require('im_select').setup {
 elseif os_name == "Darwin" then
 require('im_select').setup {
     default_im_select  = "com.apple.keylayout.ABC",
-    default_command = 'im-select',
+    default_command = 'im-select-nano',
     set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
     set_previous_events = {},
     keep_quiet_on_no_binary = false,
@@ -155,6 +156,7 @@ end
 require('mini.comment').setup()
 require('mini.pairs').setup()
 EOF
-""" END_OF_LUA_BLOCK
+""" END_OF_LUA_BLOCK """
+""""""""""""""""""""""""
 endif
 
