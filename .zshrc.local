@@ -51,16 +51,30 @@ if type kubectl &> /dev/null; then
 fi
 
 # Aliases
-if type exa > /dev/null 2>&1; then
+if type eza &> /dev/null; then
+	alias ls='eza'
+	alias l='eza -l --git'
+	alias ll='eza -l --git'
+	alias lh='eza -lh --git'
+	alias la='eza -lah --git'
+	alias tree='eza -T'
+elif type exa &> /dev/null; then
 	alias ls='exa'
 	alias l='exa -l --git'
 	alias ll='exa -l --git'
 	alias lh='exa -lh --git'
 	alias la='exa -lah --git'
 	alias tree='exa -T'
+else
+	alias ls='ls --color=auto'
+	alias l='ls -l --color=auto'
+	alias ll='ls -l --color=auto'
+	alias lh='ls -lh --color=auto'
+	alias la='ls -lah --color=auto'
+	#alias tree='tree -C'
 fi
 
-if type bat > /dev/null 2>&1 ; then
+if type bat &> /dev/null ; then
 	alias cat='bat'
 fi
 
