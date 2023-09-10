@@ -14,6 +14,10 @@ set belloff=all
 set clipboard=unnamedplus
 set mouse=a
 set wildmode=longest,list,full
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
 
 " line
 set number
