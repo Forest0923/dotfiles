@@ -45,7 +45,7 @@ else
 	#alias tree='tree -C'
 fi
 
-if [[ -f /usr/bin/bat ]]; then
+if type bat &> /dev/null; then
 	alias cat='bat'
 fi
 
@@ -72,3 +72,9 @@ bind 'set show-all-if-ambiguous on'
 # bind 'TAB:menu-complete'
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
+# Import Scripts
+if [ -d $HOME/dotfiles/local ];then
+	for src in `find $HOME/dotfiles/local -type f -name "*.sh"`; do
+		source ${src}
+	done
+fi
