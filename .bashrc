@@ -5,7 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
 # tmux
 if [ -z $TMUX ]; then
 	if [[ $TERM_PROGRAM == vscode ]]; then
@@ -68,4 +67,8 @@ fi
 [ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+bind 'set completion-ignore-case on'
+bind 'set show-all-if-ambiguous on'
+# bind 'TAB:menu-complete'
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
