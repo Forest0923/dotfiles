@@ -46,6 +46,11 @@ case `uname -s` in
 esac
 
 # Completion
+## fzf
+[ -f /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+## kubectl
 if type kubectl &> /dev/null; then
 	source <(kubectl completion zsh)
 fi
@@ -79,7 +84,7 @@ if type bat &> /dev/null ; then
 fi
 
 alias up='cd ..'
-alias refsh='exec $SHELL -l'
+alias refsh='exec `which zsh` -l'
 
 # Functions
 supp() {
