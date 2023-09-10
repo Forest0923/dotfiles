@@ -1,8 +1,11 @@
 # Prompt
+grml_theme_add_token host_full '%M ' '' ''
 zstyle ':prompt:grml:*:items:user' pre '%F{red}'
-zstyle ':prompt:grml:*:items:host' pre '%F{cyan}'
+zstyle ':prompt:grml:*:items:host_full' pre '%F{cyan}'
 zstyle ':prompt:grml:*:items:path' pre '%F{yellow}'
 zstyle ':prompt:grml:*:items:percent' pre '%f'
+zstyle ':prompt:grml:left:setup' items rc change-root user at host_full path vcs newline percent
+zstyle ':prompt:grml:right:setup' items sad-smiley
 
 # Variables
 if type nvim > /dev/null 2>&1; then
