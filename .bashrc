@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # tmux
-if [ -z $TMUX ]; then
+if command -v tmux &> /dev/null && [ -z $TMUX ]; then
 	if [[ $TERM_PROGRAM == vscode ]]; then
 		tmux new 2> /dev/null
 	else
@@ -55,7 +55,22 @@ alias egrep='egrep --color=auto'
 alias up='cd ..'
 alias refsh='exec `which bash` -l'
 
-PS1='\[\e[31m\]\u\[\e[37m\]@\[\e[34m\]\h \[\e[33m\]\W\[\e[m\] \$ '
+# Prompt
+## Colors
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+WHITE="\[\033[0;37m\]"
+
+exit_status() {
+	EXIT_CODE=$?
+	if [ $EXIT_CODE -ne 0 ]; then
+		PS1="aaaa${RED}\[\e[1m\]${EXIT_CODE}\[\e[0m\] ${RED}\u${WHITE}@\H ${YELLOW}\w${WHITE}\n\$ "
+	else
+		PS1="aaaa${RED}\u${WHITE}@\H ${YELLOW}\w${WHITE}\n\$ "
+	fi
+}
+
+PROMPT_COMMAND=exit_status
 
 if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     LS_COLORS="${LS_COLORS}:ow=01;34";
