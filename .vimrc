@@ -1,6 +1,5 @@
 syntax enable
 filetype plugin indent on
-lang en_US.UTF-8
 
 language C
 set fenc=utf-8
@@ -18,6 +17,7 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
+lang en_US.UTF-8
 
 " line
 set number
