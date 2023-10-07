@@ -61,7 +61,7 @@ esac
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ## kubectl
 if type kubectl &> /dev/null; then
-	source <(kubectl completion zsh)
+	source <(kubectl completion zsh 2>/dev/null)
 fi
 
 # Aliases
