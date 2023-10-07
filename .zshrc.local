@@ -92,6 +92,10 @@ if type bat &> /dev/null ; then
 	alias cat='bat'
 fi
 
+if !type hostname &> /dev/null; then
+	alias hostname='/bin/cat /etc/hostname; echo'
+fi
+
 alias up='cd ..'
 alias refsh='exec `which zsh` -l'
 
