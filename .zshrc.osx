@@ -2,3 +2,6 @@ if [[ ":$PATH:" != *":/usr/local/mysql/bin:"* ]]; then
 	export PATH=/usr/local/mysql/bin:$PATH
 fi
 
+if [[ ":$PATH:" != *":$HOME/.rd/bin:"* ]]; then
+	export PATH=$HOME/.rd/bin:$PATH
+fi
