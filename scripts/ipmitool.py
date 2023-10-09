@@ -18,7 +18,7 @@ def ipmitool_off(cfg):
     os.system("ipmitool -I lanplus -U " + cfg["username"] + " -P " + cfg["password"] + " -H " + cfg["ip_addr"] + " chassis power off")
 
 if __name__ == '__main__':
-    filepath    = os.environ['HOME'] + '/dotfiles/local/config.toml'
+    filepath    = os.environ['HOME'] + '/dotfiles/local/config/config.toml'
     with open(filepath, mode='rb') as fp:
         config  = tomli.load(fp)
 

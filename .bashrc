@@ -64,13 +64,17 @@ WHITE="\[\033[0;37m\]"
 exit_status() {
 	EXIT_CODE=$?
 	if [ $EXIT_CODE -ne 0 ]; then
-		PS1="aaaa${RED}\[\e[1m\]${EXIT_CODE}\[\e[0m\] ${RED}\u${WHITE}@\H ${YELLOW}\w${WHITE}\n\$ "
+		PS1="${RED}\[\e[1m\]${EXIT_CODE}\[\e[0m\] ${RED}\u${WHITE}@\H ${YELLOW}\w${WHITE}\n\$ "
 	else
-		PS1="aaaa${RED}\u${WHITE}@\H ${YELLOW}\w${WHITE}\n\$ "
+		PS1="${RED}\u${WHITE}@\H ${YELLOW}\w${WHITE}\n\$ "
 	fi
 }
 
 PROMPT_COMMAND=exit_status
+
+if [ -f $HOME/dotfiles/local/prompt/prompt.sh ]; then
+	source $HOME/dotfiles/local/prompt/prompt.sh
+fi
 
 if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     LS_COLORS="${LS_COLORS}:ow=01;34";
@@ -88,8 +92,8 @@ bind 'set show-all-if-ambiguous on'
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # Import Scripts
-if [ -d $HOME/dotfiles/local ];then
-	for src in `find $HOME/dotfiles/local -type f -name "*.sh"`; do
+if [ -d $HOME/dotfiles/local/scripts ];then
+	for src in `find $HOME/dotfiles/local/scripts -type f -name "*.sh"`; do
 		source ${src}
 	done
 fi

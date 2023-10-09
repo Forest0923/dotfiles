@@ -49,6 +49,6 @@ class WakeOnLan:
 
 
 if __name__ == '__main__':
-    filepath    = os.environ['HOME'] + '/dotfiles/local/config.toml'
+    filepath    = os.environ['HOME'] + '/dotfiles/local/config/config.toml'
     wol = WakeOnLan(filepath)
     wol.run()

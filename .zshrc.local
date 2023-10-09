@@ -119,11 +119,11 @@ ssh-add-keys() {
 }
 
 wol_home() {
-	if [ -f $HOME/dotfiles/local/config.toml ]; then
+	if [ -f $HOME/dotfiles/local/config/config.toml ]; then
 		$HOME/dotfiles/scripts/wol.py
 		echo "Magic packet is sended!"
 	else
-		echo "~/dotfiles/local/config.toml doesn't exist!"
+		echo "~/dotfiles/local/config/config.toml doesn't exist!"
 	fi
 }
 
@@ -158,9 +158,7 @@ if [ -d $HOME/dotfiles/scripts ];then
 	done
 fi
 
-if [ -d $HOME/dotfiles/local ];then
-	for src in `find $HOME/dotfiles/local -type f -name "*.sh"`; do
-		source ${src}
-	done
+if [ -d $HOME/dotfiles/local/scripts ];then
+	export PATH="$HOME/dotfiles/local/scripts:$PATH"
 fi
 
