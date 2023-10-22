@@ -92,6 +92,20 @@ bind 'set show-all-if-ambiguous on'
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # Import Scripts
+if [ -d $HOME/dotfiles/bin ] && [[ ! :$PATH: =~ *:"$HOME/dotfiles/bin":* ]];then
+	export PATH="$HOME/dotfiles/bin:$PATH"
+fi
+
+if [ -d $HOME/dotfiles/scripts ];then
+	for src in `find $HOME/dotfiles/scripts -type f -name "*.sh"`; do
+		source ${src}
+	done
+fi
+
+if [ -d $HOME/dotfiles/local/bin ] && [[ ! :$PATH: =~ *:"$HOME/dotfiles/local/bin":* ]];then
+	export PATH="$HOME/dotfiles/local/bin:$PATH"
+fi
+
 if [ -d $HOME/dotfiles/local/scripts ];then
 	for src in `find $HOME/dotfiles/local/scripts -type f -name "*.sh"`; do
 		source ${src}
