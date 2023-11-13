@@ -91,7 +91,7 @@ else
 fi
 
 if type bat &> /dev/null ; then
-	alias cat='bat'
+	alias cat='bat --theme ansi'
 fi
 
 if !type hostname &> /dev/null; then
