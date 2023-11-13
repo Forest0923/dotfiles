@@ -26,5 +26,9 @@ return {
 	hide_tab_bar_if_only_one_tab	= true,
 
 	exit_behavior			= "Close",
-	audible_bell= "Disabled"
+	audible_bell= "Disabled",
+	keys = {
+		{ key = ' ', mods = 'SHIFT', action = wezterm.action.QuickSelect },
+	}
 }
+
