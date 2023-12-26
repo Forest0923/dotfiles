@@ -95,7 +95,6 @@ endif
 " Plugins
 call plug#begin()
 	Plug 'rust-lang/rust.vim'
-	Plug 'rhysd/vim-clang-format'
 	Plug 'prabirshrestha/vim-lsp'
 	Plug 'mattn/vim-lsp-settings'
 	Plug 'prabirshrestha/asyncomplete.vim'
@@ -111,26 +110,6 @@ call plug#end()
 
 let g:copilot_filetypes = {'yaml': v:true}
 let g:rustfmt_autosave = 1
-let g:clang_format#auto_format = 1
-let g:clang_format#detect_style_file = 0
-" clang-format >= v14.0
-let g:clang_format#style_options = {
-	\ "AlignArrayOfStructures": "None",
-	\ "AlignConsecutiveAssignments": "AcrossEmptyLinesAndComments",
-	\ "AlignConsecutiveBitFields": "AcrossEmptyLinesAndComments",
-	\ "AlignConsecutiveDeclarations": "AcrossEmptyLinesAndComments",
-	\ "AlignConsecutiveMacros": "AcrossEmptyLinesAndComments",
-	\ "AlignOperands": "true",
-	\ "AllowShortBlocksOnASingleLine": "Empty",
-	\ "AllowShortEnumsOnASingleLine": "false",
-	\ "AllowShortFunctionsOnASingleLine": "Empty",
-	\ "AllowShortIfStatementsOnASingleLine": "false",
-	\ "BasedOnStyle": "LLVM",
-	\ "BreakBeforeBraces": "Linux",
-	\ "IndentCaseLabels": "false",
-	\ "IndentWidth": "8",
-	\ "UseTab": "Always",
-	\ }
 
 if has ('nvim')
 """""""""""""""""""""""""""""
