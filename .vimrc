@@ -109,6 +109,7 @@ call plug#begin()
 	endif
 call plug#end()
 
+let g:copilot_filetypes = {'yaml': v:true}
 let g:rustfmt_autosave = 1
 let g:clang_format#auto_format = 1
 let g:clang_format#detect_style_file = 0
