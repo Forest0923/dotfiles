@@ -12,22 +12,22 @@ for i in ${selected_software[@]}; do
 	case $i in
 		"bash")	ln -snf $DOTFILES/.bashrc $HOME/.bashrc ;;
 		"zsh")
-			ln -snf $DOTFILES/.zshrc.pre $HOME/.zshrc.pre
-			ln -snf $DOTFILES/.zshrc $HOME/.zshrc
-			ln -snf $DOTFILES/.zshrc.local $HOME/.zshrc.local
+			ln -snf $DOTFILES/zsh/.zshrc.pre $HOME/.zshrc.pre
+			ln -snf $DOTFILES/zsh/.zshrc $HOME/.zshrc
+			ln -snf $DOTFILES/zsh/.zshrc.local $HOME/.zshrc.local
 			case `uname -s` in
 				"Darwin")
-					ln -snf $DOTFILES/.zshrc.osx.pre $HOME/.zshrc.osx.pre
-					ln -snf $DOTFILES/.zshrc.osx $HOME/.zshrc.osx
+					ln -snf $DOTFILES/zsh/.zshrc.osx.pre $HOME/.zshrc.osx.pre
+					ln -snf $DOTFILES/zsh/.zshrc.osx $HOME/.zshrc.osx
 					;;
 				"Linux")
 					case `uname -r` in
 						*"microsoft"*)
-							ln -snf $DOTFILES/.zshrc.wsl $HOME/.zshrc.wsl
+							ln -snf $DOTFILES/zsh/.zshrc.wsl $HOME/.zshrc.wsl
 							;;
 						*"valve"*)
-							ln -snf $DOTFILES/.zshrc.steamos.pre $HOME/.zshrc.steamos.pre
-							ln -snf $DOTFILES/.zshrc.steamos $HOME/.zshrc.steamos
+							ln -snf $DOTFILES/zsh/.zshrc.steamos.pre $HOME/.zshrc.steamos.pre
+							ln -snf $DOTFILES/zsh/.zshrc.steamos $HOME/.zshrc.steamos
 							;;
 						*);;
 					esac
@@ -51,13 +51,13 @@ for i in ${selected_software[@]}; do
 			fi
 			;;
 		"tmux")
-			ln -snf $DOTFILES/.tmux.conf $HOME/.tmux.conf
+			ln -snf $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
 			case `uname -s` in
 				"Darwin")
-					ln -snf $DOTFILES/.tmux.osx.conf $HOME/.tmux.osx.conf
+					ln -snf $DOTFILES/tmux/.tmux.osx.conf $HOME/.tmux.osx.conf
 					;;
 				"Linux")
-					ln -snf $DOTFILES/.tmux.linux.conf $HOME/.tmux.linux.conf
+					ln -snf $DOTFILES/tmux/.tmux.linux.conf $HOME/.tmux.linux.conf
 					;;
 				*);;
 			esac
@@ -65,10 +65,10 @@ for i in ${selected_software[@]}; do
 		"alacritty")
 			case `uname -s` in
 				"Darwin")
-					ln -snf $DOTFILES/.alacritty.osx.yml $HOME/.alacritty.yml
+					ln -snf $DOTFILES/terminal_configs/.alacritty.osx.yml $HOME/.alacritty.yml
 					;;
 				"Linux")
-					ln -snf $DOTFILES/.alacritty.yml $HOME/.alacritty.yml
+					ln -snf $DOTFILES/terminal_configs/.alacritty.yml $HOME/.alacritty.yml
 					;;
 				*);;
 			esac
@@ -76,10 +76,10 @@ for i in ${selected_software[@]}; do
 		"wezterm")
 			case `uname -s` in
 				"Darwin")
-					ln -snf $DOTFILES/.wezterm.osx.lua $HOME/.wezterm.lua
+					ln -snf $DOTFILES/terminal_configs/.wezterm.osx.lua $HOME/.wezterm.lua
 					;;
 				"Linux")
-					ln -snf $DOTFILES/.wezterm.lua $HOME/.wezterm.lua
+					ln -snf $DOTFILES/terminal_configs/.wezterm.lua $HOME/.wezterm.lua
 					;;
 				*);;
 			esac
