@@ -13,6 +13,9 @@ set belloff=all
 set clipboard=unnamedplus
 set mouse=a
 set wildmode=longest,list,full
+" remove trailing whitespace
+autocmd BufWritePre * %s/\s\+$//e
+" jump to last edit position when opening files
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
