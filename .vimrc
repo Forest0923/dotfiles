@@ -44,6 +44,7 @@ if has ("autocmd")
 	filetype plugin on
 	autocmd FileType rust	setlocal tabstop=4 shiftwidth=4 expandtab
 	autocmd FileType python	setlocal tabstop=4 shiftwidth=4 expandtab
+	autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab
 endif
 set backspace=indent,eol,start
 
@@ -109,6 +110,8 @@ call plug#begin()
 call plug#end()
 
 let g:copilot_filetypes = {'yaml': v:true}
+let g:copilot_filetypes = {'markdown': v:true}
+
 let g:rustfmt_autosave = 1
 
 if has ('nvim')
