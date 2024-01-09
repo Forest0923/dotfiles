@@ -112,8 +112,7 @@ call plug#begin()
 	endif
 call plug#end()
 
-let g:copilot_filetypes = {'yaml': v:true}
-let g:copilot_filetypes = {'markdown': v:true}
+let g:copilot_filetypes = {'markdown': v:true, 'yaml': v:true}
 
 let g:rustfmt_autosave = 1
 
