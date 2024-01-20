@@ -25,8 +25,9 @@ function calc_prompt_length () {
 
 function gen_spaces () {
 	space_length=$1
-	for ((space_length=$1; $COLUMNS<$space_length; space_length-=$COLUMNS)); do
-	done
+	if [ $space_length -lt 0 ]; then
+		space_length=0
+	fi
 
 	spaces=""
 	for _ in `seq $space_length`; do
