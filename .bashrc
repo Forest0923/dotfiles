@@ -57,20 +57,37 @@ alias refsh='exec `which bash` -l'
 
 # Prompt
 ## Colors
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-WHITE="\[\033[0;37m\]"
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
+MAGENTA="\033[0;35m"
+WHITE="\033[0;37m"
 
-exit_status() {
-	EXIT_CODE=$?
-	if [ $EXIT_CODE -ne 0 ]; then
-		PS1="${RED}\[\e[1m\]${EXIT_CODE}\[\e[0m\] ${RED}\u${WHITE}@\H ${YELLOW}\w${WHITE}\n\$ "
-	else
-		PS1="${RED}\u${WHITE}@\H ${YELLOW}\w${WHITE}\n\$ "
+gen_git_prompt() {
+	branch=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	echo " ${MAGENTA}[${GREEN}$branch${MAGENTA}]"
+}
+
+gen_rc_prompt() {
+	rc=$1
+	if [ $rc -ne 0 ]; then
+		echo "${RED}\[\e[1m\]${rc}\[\e[0m\] "
 	fi
 }
 
-PROMPT_COMMAND=exit_status
+setup_prompt() {
+	RC=$(gen_rc_prompt $?)
+	GIT=$(gen_git_prompt)
+	PS1="${RC}${RED}\u${WHITE}@\H ${YELLOW}\w${GIT}${WHITE}\n\$ "
+
+	# rprompt
+	TIME=`date +"%R:%S %Y-%m-%d"`
+	num=$(($COLUMNS - ${#TIME}))
+	printf "%${num}s${BLUE}${TIME}${WHITE}\\r" ''
+}
+
+PROMPT_COMMAND=setup_prompt
 
 if [ -f $HOME/dotfiles/local/prompt/prompt.sh ]; then
 	source $HOME/dotfiles/local/prompt/prompt.sh
