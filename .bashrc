@@ -54,7 +54,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias up='cd ..'
 alias refsh='exec `which bash` -l'
-
+alias restore_stty="stty 4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:ff:12:f:17:16:ff:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0"
 # Prompt
 ## Colors
 RED="\033[0;31m"
