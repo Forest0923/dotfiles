@@ -112,7 +112,10 @@ call plug#begin()
 	endif
 call plug#end()
 
-let g:copilot_filetypes = {'markdown': v:true, 'yaml': v:true}
+if exists('g:vscode')
+else
+	let g:copilot_filetypes = {'markdown': v:true, 'yaml': v:true}
+endif
 
 let g:rustfmt_autosave = 1
 

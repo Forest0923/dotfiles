@@ -61,8 +61,11 @@ fi
 export GIT_EDITOR=vim
 
 ## Path
-if [[ -d $HOME/.local/bin ]] && [[ ! :$PATH: =~ *:"$HOME/.local/bin":* ]]; then
+if [[ -d $HOME/.local/bin ]] && [[ ! ":$PATH:" =~ .*:"$HOME/.local/bin":.* ]]; then
 	export PATH="$HOME/.local/bin:$PATH"
+fi
+if [[ -d $HOME/.cargo/bin ]] && [[ ! ":$PATH:" =~ .*:"$HOME/.cargo/bin":.* ]]; then
+	export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 [[ -r $HOME/.cargo/env ]] && . "$HOME/.cargo/env"

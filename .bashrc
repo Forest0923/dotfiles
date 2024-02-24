@@ -1,6 +1,36 @@
 #
 # ~/.bashrc
 #
+FOREST_OSTYPE=`uname -s`
+
+function islinux () {
+	[[ $FOREST_OSTYPE == "Linux" ]]
+}
+
+function isdarwin () {
+	[[ $FOREST_OSTYPE == "Darwin" ]]
+}
+
+function sudo-command-line () {
+	local cmd="sudo "
+	local buffer="$READLINE_LINE"
+	local cursor="$READLINE_POINT"
+
+	if [[ -z "$buffer" ]]; then
+		buffer=`history 1 | awk '{ for (i = 2; i <= NF; i++) printf "%s%s", $i, (i < NF ? " " : "\n") }'`
+	fi
+
+	if [[ "$buffer" == "${cmd}"* ]]; then
+		READLINE_LINE="${buffer#$cmd}"
+		READLINE_POINT=$(( cursor - ${#cmd} ))
+	else
+		READLINE_LINE="${cmd}${buffer}"
+		READLINE_POINT=$(( cursor + ${#cmd} ))
+	fi
+}
+
+# Bindkey
+bind -x '"\C-o\s":sudo-command-line'
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -100,6 +130,9 @@ if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 fi
 
 # Completion
+for script in /usr/share/bash-completion/completions/*; do
+	source "$script" 2> /dev/null
+done
 [ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
