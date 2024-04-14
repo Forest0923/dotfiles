@@ -19,7 +19,7 @@ return {
 	},
 	window_background_opacity	= 0.68,
 	text_background_opacity		= 1.0,
-	window_decorations		= "RESIZE",
+	window_decorations		= "NONE",--"RESIZE",
 
 	enable_tab_bar			= true,
 	hide_tab_bar_if_only_one_tab	= true,
