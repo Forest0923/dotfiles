@@ -61,15 +61,16 @@ fi
 export GIT_EDITOR=vim
 
 ## Path
+[[ -r $HOME/.cargo/env ]] && . "$HOME/.cargo/env"
+[[ -r $HOME/.opam/opam-init/init.zsh ]] && source $HOME/.opam/opam-init/init.zsh  &> /dev/null
+
 if [[ -d $HOME/.local/bin ]] && [[ ! ":$PATH:" =~ .*:"$HOME/.local/bin":.* ]]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
+
 if [[ -d $HOME/.cargo/bin ]] && [[ ! ":$PATH:" =~ .*:"$HOME/.cargo/bin":.* ]]; then
 	export PATH="$HOME/.cargo/bin:$PATH"
 fi
-
-[[ -r $HOME/.cargo/env ]] && . "$HOME/.cargo/env"
-[[ -r $HOME/.opam/opam-init/init.zsh ]] && source $HOME/.opam/opam-init/init.zsh  &> /dev/null
 
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
 	source /usr/share/nvm/init-nvm.sh
@@ -141,6 +142,8 @@ fi
 
 alias up='cd ..'
 alias refsh='exec `which zsh` -l'
+alias neofetch='curl -s https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch | bash'
+alias print256colours='curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash'
 
 # Functions
 supp() {
