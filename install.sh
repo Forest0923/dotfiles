@@ -61,6 +61,7 @@ for i in ${selected_software[@]}; do
 					;;
 				"Linux")
 					ln -snf $DOTFILES/tmux/.tmux.linux.conf $HOME/.tmux.linux.conf
+					ln -snf $DOTFILES/ssh/rc $HOME/.ssh/rc
 					;;
 				*);;
 			esac
