@@ -1,6 +1,6 @@
 AGENT_SOCK_FILE="$HOME/.ssh/ssh_auth_sock"
 SOCK_FILE=($(find /tmp -type s -path '*/ssh-*/agent.*' -user $USER 2> /dev/null))
 if ! [ "$SOCK_FILE" = "" ]; then
-	ln -sf $SOCK_FILE $AGENT_SOCK_FILE
+	ln -snf $SOCK_FILE $AGENT_SOCK_FILE
 	export SSH_AUTH_SOCK=$AGENT_SOCK_FILE
 fi

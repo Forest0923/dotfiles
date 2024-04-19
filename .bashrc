@@ -161,3 +161,9 @@ if [ -d $HOME/dotfiles/local/scripts ];then
 		source ${src}
 	done
 fi
+
+# SSH_AUTH_SOCK
+if [ -S $SSH_AUTH_SOCK ]; then
+	export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
+fi
+

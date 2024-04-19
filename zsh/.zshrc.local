@@ -54,11 +54,15 @@ zstyle ':prompt:grml:right:setup' items shell-level existing-jobs sad-smiley
 # Variables
 if type nvim > /dev/null 2>&1; then
 	export SUDO_EDITOR=nvim
+	export GIT_EDITOR=nvim
 elif type vim > /dev/null 2>&1; then
 	export SUDO_EDITOR=vim
+	export GIT_EDITOR=vim
 fi
 
-export GIT_EDITOR=vim
+if [ -S $SSH_AUTH_SOCK ]; then
+	export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
+fi
 
 ## Path
 [[ -r $HOME/.cargo/env ]] && . "$HOME/.cargo/env"

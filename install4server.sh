@@ -9,4 +9,5 @@ ln -snf $DOTFILES/zsh/.zshrc $HOME/.zshrc
 ln -snf $DOTFILES/zsh/.zshrc.local $HOME/.zshrc.local
 ln -snf $DOTFILES/server_conf/.vimrc $HOME/.vimrc
 ln -snf $DOTFILES/server_conf/.tmux.conf $HOME/.tmux.conf
+ln -snf $DOTFILES/ssh/rc $HOME/.ssh/rc
 
