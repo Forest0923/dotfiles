@@ -163,7 +163,7 @@ if [ -d $HOME/dotfiles/local/scripts ];then
 fi
 
 # SSH_AUTH_SOCK
-if [ -S $SSH_AUTH_SOCK ]; then
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
 fi
 
