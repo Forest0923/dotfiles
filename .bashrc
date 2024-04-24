@@ -96,7 +96,11 @@ WHITE="\033[0;37m"
 
 gen_git_prompt() {
 	branch=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	echo " ${MAGENTA}[${GREEN}$branch${MAGENTA}]"
+	if [ -z $branch ]; then
+		echo ""
+	else
+		echo "${MAGENTA}[${GREEN}$branch${MAGENTA}]"
+	fi
 }
 
 gen_rc_prompt() {
@@ -109,7 +113,7 @@ gen_rc_prompt() {
 setup_prompt() {
 	RC=$(gen_rc_prompt $?)
 	GIT=$(gen_git_prompt)
-	PS1="${RC}${RED}\u${WHITE}@\H ${YELLOW}\w${GIT}${WHITE}\n\$ "
+	PS1="${RC}${RED}\u${WHITE}@\H ${YELLOW}\w${MAGENTA} ${VIRTUAL_ENV_PROMPT}${GIT}${WHITE}\n\$ "
 
 	# rprompt
 	TIME=`date +"%R:%S %Y-%m-%d"`
