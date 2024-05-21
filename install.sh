@@ -4,7 +4,7 @@ set -e
 source lib/inquirer.sh
 
 DOTFILES=`pwd`
-software=('bash' 'zsh' 'vim' 'neovim' 'tmux' 'alacritty' 'wezterm')
+software=('bash' 'zsh' 'vim' 'neovim' 'tmux' 'alacritty' 'wezterm' 'bat' 'zellij')
 
 checkbox_input "Choose what you want!:" software selected_software
 
@@ -84,6 +84,22 @@ for i in ${selected_software[@]}; do
 					;;
 				"Linux")
 					ln -snf $DOTFILES/terminal_configs/.wezterm.lua $HOME/.wezterm.lua
+					;;
+				*);;
+			esac
+			;;
+		"bat")
+			case `uname -s` in
+				"Darwin" | "Linux")
+					ln -snf $DOTFILES/bat/config $HOME/.config/bat/config
+					;;
+				*);;
+			esac
+			;;
+		"zellij")
+			case `uname -s` in
+				"Linux")
+					ln -snf $DOTFILES/zellij/config.kdl $HOME/.config/zellij/config.kdl
 					;;
 				*);;
 			esac

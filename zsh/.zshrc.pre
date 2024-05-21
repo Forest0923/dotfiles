@@ -14,7 +14,7 @@ case `uname -s` in
 	*);;
 esac
 
-if [ -z $TMUX ]; then
+if [[ -z $TMUX ]] && [[ -z $ZELLIJ ]]; then
 	if [[ $TERM_PROGRAM == vscode ]] || \
 	   [[ $TERM_PROGRAM == WarpTerminal ]] || \
 	   [[ $TERMINAL_EMULATOR == JetBrains-JediTerm ]]; then
