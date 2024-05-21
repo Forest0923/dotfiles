@@ -77,7 +77,11 @@ autocmd ColorScheme * hi CursorLineNr term=bold cterm=bold ctermfg=yellow
 if has('gui_running')
 	colorscheme torte
 else
-	colorscheme default
+	if has ('nvim')
+		colorscheme vim
+	else
+		colorscheme default
+	endif
 endif
 highlight Visual cterm=reverse ctermbg=none
 highlight Search ctermfg=0 ctermbg=3
@@ -117,7 +121,7 @@ else
 	let g:copilot_filetypes = {'markdown': v:true, 'yaml': v:true}
 endif
 
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 
 if has ('nvim')
 """""""""""""""""""""""""""""
