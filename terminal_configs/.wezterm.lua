@@ -2,7 +2,7 @@ local wezterm = require('wezterm')
 
 return {
 	font		= wezterm.font('Fira Code'),
-	font_size	= 15,
+	font_size	= 13,
 
 	colors = {
 		background	= "#000000",
@@ -32,5 +32,6 @@ return {
 
 	quick_select_patterns = {
 		"((?:[A-Za-z0-9]+[\\.\\-_])+[A-Za-z0-9]+)",
-	}
+	},
+	warn_about_missing_glyphs = false,
 }
