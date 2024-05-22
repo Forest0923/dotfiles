@@ -91,6 +91,9 @@ for i in ${selected_software[@]}; do
 		"bat")
 			case `uname -s` in
 				"Darwin" | "Linux")
+					if [ ! -d ~/.config/bat ]; then
+						mkdir -p $HOME/.config/bat
+					fi
 					ln -snf $DOTFILES/bat/config $HOME/.config/bat/config
 					;;
 				*);;
@@ -98,7 +101,10 @@ for i in ${selected_software[@]}; do
 			;;
 		"zellij")
 			case `uname -s` in
-				"Linux")
+				"Darwin" | "Linux")
+					if [ ! -d ~/.config/zellij ]; then
+						mkdir -p $HOME/.config/zellij
+					fi
 					ln -snf $DOTFILES/zellij/config.kdl $HOME/.config/zellij/config.kdl
 					;;
 				*);;
