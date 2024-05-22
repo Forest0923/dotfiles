@@ -3,4 +3,3 @@ if test /opt/homebrew/bin/brew &> /dev/null; then
 fi
 
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
-
