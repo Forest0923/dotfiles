@@ -2,7 +2,7 @@ local wezterm = require('wezterm')
 
 return {
 	font		= wezterm.font('Fira Code'),
-	font_size	= 15,
+	font_size	= 13,
 	line_height	= 0.9,
 
 	colors = {
@@ -20,7 +20,7 @@ return {
 	},
 	window_background_opacity	= 0.75,
 	text_background_opacity		= 1.0,
-	window_decorations		= "RESIZE",
+	window_decorations		= "TITLE | RESIZE",
 
 	enable_tab_bar			= true,
 	hide_tab_bar_if_only_one_tab	= true,
