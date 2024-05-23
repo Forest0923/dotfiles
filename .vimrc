@@ -86,7 +86,7 @@ endif
 highlight Visual cterm=reverse ctermbg=none
 highlight Search ctermfg=0 ctermbg=3
 highlight CursorColumn ctermbg=8
-highlight Pmenu ctermbg=237 ctermfg=7
+highlight Pmenu ctermbg=237 ctermfg=7 guibg=DarkBlue
 
 " Shape of Cursor
 "if &term =~ 'xterm\|rxvt'
