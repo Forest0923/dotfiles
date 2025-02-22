@@ -19,7 +19,7 @@ return {
 	},
 	window_background_opacity	= 0.68,
 	text_background_opacity		= 1.0,
-	window_decorations		= "NONE",--"RESIZE",
+	window_decorations		= "RESIZE",--"NONE",
 
 	enable_tab_bar			= true,
 	hide_tab_bar_if_only_one_tab	= true,
@@ -31,7 +31,7 @@ return {
 	},
 
 	quick_select_patterns = {
-		"((?:[A-Za-z0-9]+[\\.\\-_])+[A-Za-z0-9]+)",
+		"((?:[A-Za-z0-9]+[\\.\\-_/])+[A-Za-z0-9\\.]+)",
 	},
 	warn_about_missing_glyphs = false,
 }
