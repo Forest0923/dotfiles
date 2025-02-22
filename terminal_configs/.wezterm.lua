@@ -31,7 +31,7 @@ return {
 	},
 
 	quick_select_patterns = {
-		"((?:[A-Za-z0-9]+[\\.\\-_])+[A-Za-z0-9]+)",
+		"((?:[A-Za-z0-9]+[\\.\\-_/])+[A-Za-z0-9\\.]+)",
 	},
 	warn_about_missing_glyphs = false,
 }
