@@ -1,16 +1,58 @@
 #!/bin/bash
 set -e
 
-source lib/inquirer.sh
+usage() {
+	echo "Usage: install.sh [options]"
+	echo "Options:"
+	echo "  -h, --help    Show this help message and exit"
+	echo "  -s, --server  Install for Linux Server"
+}
 
-DOTFILES=`pwd`
+# Parse options
+while [ $# -gt 0 ]; do
+	case $1 in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-s | --server)
+			FOR_LINUX_SERVER=true
+			shift
+			;;
+		*)
+			usage
+			exit 1
+			;;
+	esac
+done
+
+DOTFILES=$(dirname $(realpath $0))
+
+if [ $FOR_LINUX_SERVER ]; then
+	echo "Install for Linux Server"
+
+	ln -snf $DOTFILES/bash/.bashrc_linux_server $HOME/.bashrc
+	ln -snf $DOTFILES/bash/.bash_profile $HOME/.bash_profile
+	ln -snf $DOTFILES/zsh/.zshrc.pre $HOME/.zshrc.pre
+	ln -snf $DOTFILES/zsh/.zshrc $HOME/.zshrc
+	ln -snf $DOTFILES/zsh/.zshrc.local $HOME/.zshrc.local
+	ln -snf $DOTFILES/vim/.vimrc_linux_server $HOME/.vimrc
+	ln -snf $DOTFILES/tmux/.tmux.linux_server.conf $HOME/.tmux.conf
+	ln -snf $DOTFILES/ssh/rc $HOME/.ssh/rc
+	ln -snf $DOTFILES/ssh/config_server $HOME/.ssh/config
+
+	exit 0
+fi
+
+source $DOTFILES/lib/inquirer.sh
+
 software=('bash' 'zsh' 'vim' 'neovim' 'tmux' 'alacritty' 'wezterm' 'bat' 'zellij')
 
 checkbox_input "Choose what you want!:" software selected_software
 
 for i in ${selected_software[@]}; do
 	case $i in
-		"bash")	ln -snf $DOTFILES/.bashrc $HOME/.bashrc ;;
+		"bash")	ln -snf $DOTFILES/bash/.bashrc $HOME/.bashrc ;;
 		"zsh")
 			ln -snf $DOTFILES/zsh/.zshrc.pre $HOME/.zshrc.pre
 			ln -snf $DOTFILES/zsh/.zshrc $HOME/.zshrc
@@ -36,7 +78,7 @@ for i in ${selected_software[@]}; do
 			esac
 			;;
 		"vim")
-			ln -snf $DOTFILES/.vimrc $HOME/.vimrc
+			ln -snf $DOTFILES/vim/.vimrc $HOME/.vimrc
 			if [ ! -f ~/.vim/autoload/plug.vim ]; then
 				curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 					https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -44,7 +86,7 @@ for i in ${selected_software[@]}; do
 			;;
 		"neovim")
 			! test -d $HOME/.config/nvim && mkdir -p $HOME/.config/nvim
-			ln -snf $DOTFILES/.vimrc $HOME/.config/nvim/init.vim
+			ln -snf $DOTFILES/vim/.vimrc $HOME/.config/nvim/init.vim
 			if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
 				sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 					https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
