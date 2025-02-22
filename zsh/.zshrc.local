@@ -53,9 +53,11 @@ zstyle ':prompt:grml:right:setup' items shell-level existing-jobs sad-smiley
 
 # Variables
 if type nvim > /dev/null 2>&1; then
+	export EDITOR=nvim
 	export SUDO_EDITOR=nvim
 	export GIT_EDITOR=nvim
 elif type vim > /dev/null 2>&1; then
+	export EDITOR=vim
 	export SUDO_EDITOR=vim
 	export GIT_EDITOR=vim
 fi
