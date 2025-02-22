@@ -2,7 +2,7 @@
 
 DOTFILES=$HOME/dotfiles
 
-ln -snf $DOTFILES/.bashrc $HOME/.bashrc
+ln -snf $DOTFILES/server_conf/.bashrc $HOME/.bashrc
 ln -snf $DOTFILES/server_conf/.bash_profile $HOME/.bash_profile
 ln -snf $DOTFILES/zsh/.zshrc.pre $HOME/.zshrc.pre
 ln -snf $DOTFILES/zsh/.zshrc $HOME/.zshrc
@@ -11,3 +11,6 @@ ln -snf $DOTFILES/server_conf/.vimrc $HOME/.vimrc
 ln -snf $DOTFILES/server_conf/.tmux.conf $HOME/.tmux.conf
 ln -snf $DOTFILES/ssh/rc $HOME/.ssh/rc
 
+echo "Host *
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null" > $HOME/.ssh/config
