@@ -48,6 +48,7 @@ if has ("autocmd")
 	autocmd FileType rust	setlocal tabstop=4 shiftwidth=4 expandtab
 	autocmd FileType python	setlocal tabstop=4 shiftwidth=4 expandtab
 	autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab
+	autocmd BufRead,BufNewFile *.v setfiletype verilog
 endif
 set backspace=indent,eol,start
 
@@ -109,6 +110,7 @@ call plug#begin()
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
 	Plug 'mechatroner/rainbow_csv'
 	Plug 'keaising/im-select.nvim'
+	Plug 'vhda/verilog_systemverilog.vim'
 	if has ('nvim')
 		Plug 'echasnovski/mini.nvim'
 	else
@@ -117,11 +119,16 @@ call plug#begin()
 call plug#end()
 
 if exists('g:vscode')
+	let g:copilot_enabled = v:false
 else
+	let g:copilot_enabled = v:true
 	let g:copilot_filetypes = {'markdown': v:true, 'yaml': v:true}
 endif
 
 " let g:rustfmt_autosave = 1
+
+" Verilog
+let b:verilog_indent_assign_fix = 1
 
 if has ('nvim')
 """""""""""""""""""""""""""""
