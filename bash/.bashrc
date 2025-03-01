@@ -137,9 +137,9 @@ fi
 for script in /usr/share/bash-completion/completions/*; do
 	source "$script" 2> /dev/null
 done
-[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
-[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if type fzf &> /dev/null; then
+	eval "$(fzf --bash)"
+fi
 bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
 # bind 'TAB:menu-complete'
