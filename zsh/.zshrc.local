@@ -66,8 +66,16 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
 fi
 
+if type ghq &> /dev/null; then
+	DOTFILES=$(ghq root)/$(ghq list | grep "Forest0923/dotfiles")
+	DOTFILES_LOCAL=$(ghq root)/$(ghq list | grep "$USER/dotfiles-local")
+else
+	DOTFILES=$HOME/dotfiles
+	DOTFILES_LOCAL=$HOME/dotfiles-local
+fi
+
 ## Path
-export PATH="$HOME/dotfiles/bin:$PATH"
+export PATH="$DOTFILES/bin:$PATH"
 
 [[ -r $HOME/.cargo/env ]] && . "$HOME/.cargo/env"
 [[ -r $HOME/.opam/opam-init/init.zsh ]] && source $HOME/.opam/opam-init/init.zsh  &> /dev/null
@@ -137,7 +145,6 @@ else
 	alias ll='ls -l --color=auto'
 	alias lh='ls -lh --color=auto'
 	alias la='ls -lah --color=auto'
-	#alias tree='tree -C'
 fi
 
 if type bat &> /dev/null ; then
@@ -152,6 +159,9 @@ alias up='cd ..'
 alias refsh='exec `which zsh` -l'
 alias neofetch='curl -s https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch | bash'
 alias print256colours='curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash'
+if type ghq &> /dev/null ; then
+	alias cdghq='cd $(ghq root)'
+fi
 
 # Functions
 supp() {
@@ -173,11 +183,11 @@ ssh-add-keys() {
 }
 
 wol_home() {
-	if [ -f $HOME/dotfiles/local/config/config.toml ]; then
-		$HOME/dotfiles/scripts/wol.py
+	if [ -f $DOTFILES_LOCAL/config/config.toml ]; then
+		$DOTFILES/scripts/wol.py
 		echo "Magic packet is sended!"
 	else
-		echo "~/dotfiles/local/config/config.toml doesn't exist!"
+		echo "Config file doesn't exist!"
 	fi
 }
 
@@ -190,7 +200,7 @@ ipmitool_on() {
 		echo "Please specify hostname"
 		return 1
 	fi
-	$HOME/dotfiles/scripts/ipmitool.py $1 "on"
+	$DOTFILES/scripts/ipmitool.py $1 "on"
 }
 
 ipmitool_off() {
@@ -202,26 +212,14 @@ ipmitool_off() {
 		echo "Please specify hostname"
 		return 1
 	fi
-	$HOME/dotfiles/scripts/ipmitool.py $1 "off"
+	$DOTFILES/scripts/ipmitool.py $1 "off"
 }
 
 # Import Scripts
-if [ -d $HOME/dotfiles/bin ]; then
-	export PATH="$HOME/dotfiles/bin:$PATH"
+if [ -d $DOTFILES/bin ]; then
+	export PATH="$DOTFILES/bin:$PATH"
 fi
 
-if [ -d $HOME/dotfiles/scripts ]; then
-	for src in `find $HOME/dotfiles/scripts -type f -name "*.sh"`; do
-		source ${src}
-	done
-fi
-
-if [ -d $HOME/dotfiles/local/bin ]; then
-	export PATH="$HOME/dotfiles/local/bin:$PATH"
-fi
-
-if [ -d $HOME/dotfiles/local/scripts ]; then
-	for src in `find $HOME/dotfiles/local/scripts -type f -name "*.sh"`; do
-		source ${src}
-	done
+if [ -d $DOTFILES_LOCAL/bin ]; then
+	export PATH="$DOTFILES_LOCAL/bin:$PATH"
 fi
