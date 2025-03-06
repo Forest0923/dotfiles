@@ -67,11 +67,11 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 fi
 
 if type ghq &> /dev/null; then
-	DOTFILES=$(ghq root)/$(ghq list | grep "Forest0923/dotfiles")
-	DOTFILES_LOCAL=$(ghq root)/$(ghq list | grep "$USER/dotfiles-local")
+	export DOTFILES=$(ghq root)/$(ghq list | grep "Forest0923/dotfiles")
+	export DOTFILES_LOCAL=$(ghq root)/$(ghq list | grep "$USER/dotfiles-local")
 else
-	DOTFILES=$HOME/dotfiles
-	DOTFILES_LOCAL=$HOME/dotfiles-local
+	export DOTFILES=$HOME/dotfiles
+	export DOTFILES_LOCAL=$HOME/dotfiles-local
 fi
 
 ## Path
