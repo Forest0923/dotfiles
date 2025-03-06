@@ -3,7 +3,7 @@ local wezterm = require('wezterm')
 return {
 	font		= wezterm.font('Fira Code'),
 	font_size	= 13,
-	line_height	= 0.9,
+	line_height	= 1.0,
 
 	colors = {
 		background	= "#000000",
@@ -21,6 +21,8 @@ return {
 	window_background_opacity	= 0.75,
 	text_background_opacity		= 1.0,
 	window_decorations		= "TITLE | RESIZE",
+	send_composed_key_when_left_alt_is_pressed = true,
+	send_composed_key_when_right_alt_is_pressed = true,
 
 	enable_tab_bar			= true,
 	hide_tab_bar_if_only_one_tab	= true,
