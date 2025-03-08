@@ -160,7 +160,7 @@ alias refsh='exec `which zsh` -l'
 alias neofetch='curl -s https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch | bash'
 alias print256colours='curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash'
 if type ghq &> /dev/null ; then
-	alias cdghq='cd $(ghq root)'
+	alias cdghq='cd $(ghq root); ghq list'
 fi
 
 # Functions
@@ -192,7 +192,7 @@ wol_home() {
 }
 
 ipmitool_on() {
-	if [ ! -e `where ipmitool` ]; then
+	if ! command -v ipmitool &> /dev/null; then
 		echo "ipmitool not found"
 		return 1
 	fi
@@ -216,10 +216,10 @@ ipmitool_off() {
 }
 
 # Import Scripts
-if [ -d $DOTFILES/bin ]; then
-	export PATH="$DOTFILES/bin:$PATH"
+if [[ -d $DOTFILES/bin ]]; then
+	export PATH="$PATH:$DOTFILES/bin"
 fi
 
-if [ -d $DOTFILES_LOCAL/bin ]; then
-	export PATH="$DOTFILES_LOCAL/bin:$PATH"
+if [[ -d $DOTFILES_LOCAL/bin ]]; then
+	export PATH="$PATH:$DOTFILES_LOCAL/bin"
 fi
