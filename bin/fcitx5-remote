@@ -1,0 +1,8 @@
+#!/bin/bash
+FLATPAK=$(flatpak list | grep org.fcitx.Fcitx5 | wc -l)
+if ! [ $FLATPAK -eq 0 ]; then
+	exec flatpak run --command=fcitx5-remote org.fcitx.Fcitx5 "$@"
+else
+	echo "fcitx5-remote not found"
+	exit 1
+fi

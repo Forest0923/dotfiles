@@ -138,7 +138,7 @@ local os_name = vim.loop.os_uname().sysname
 
 if os_name == 'Linux' then
 require('im_select').setup {
-    default_im_select  = "keyboard-jp",
+    default_im_select  = "keyboard-us",
     default_command = 'fcitx5-remote',
     set_default_events = { "VimEnter", "FocusGained", "InsertLeave" },
     set_previous_events = {},
