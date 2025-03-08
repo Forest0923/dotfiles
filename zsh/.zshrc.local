@@ -52,11 +52,11 @@ zstyle ':prompt:grml:left:setup' items user at host_full path virtual-env vcs pa
 zstyle ':prompt:grml:right:setup' items shell-level existing-jobs sad-smiley
 
 # Variables
-if type nvim > /dev/null 2>&1; then
+if command -v nvim &> /dev/null; then
 	export EDITOR=nvim
 	export SUDO_EDITOR=nvim
 	export GIT_EDITOR=nvim
-elif type vim > /dev/null 2>&1; then
+elif command -v vim &> /dev/null; then
 	export EDITOR=vim
 	export SUDO_EDITOR=vim
 	export GIT_EDITOR=vim
@@ -66,7 +66,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
 fi
 
-if type ghq &> /dev/null; then
+if command -v ghq &> /dev/null; then
 	export DOTFILES=$(ghq root)/$(ghq list | grep "Forest0923/dotfiles")
 	export DOTFILES_LOCAL=$(ghq root)/$(ghq list | grep "$USER/dotfiles-local")
 else
@@ -75,7 +75,13 @@ else
 fi
 
 ## Path
-export PATH="$DOTFILES/bin:$PATH"
+if [[ -d $DOTFILES/bin ]]; then
+	export PATH="$PATH:$DOTFILES/bin"
+fi
+
+if [[ -d $DOTFILES_LOCAL/bin ]]; then
+	export PATH="$PATH:$DOTFILES_LOCAL/bin"
+fi
 
 [[ -r $HOME/.cargo/env ]] && . "$HOME/.cargo/env"
 [[ -r $HOME/.opam/opam-init/init.zsh ]] && source $HOME/.opam/opam-init/init.zsh  &> /dev/null
@@ -114,25 +120,25 @@ esac
 
 # Completion
 ## fzf
-if type fzf &> /dev/null; then
+if command -v fzf &> /dev/null; then
 	source <(fzf --zsh)
 fi
 ## kubectl
-if type kubectl &> /dev/null; then
+if command -v kubectl &> /dev/null; then
 	source <(kubectl completion zsh 2>/dev/null)
 fi
 ## molecule
 # eval "$(_MOLECULE_COMPLETE=zsh_source molecule)"
 
 # Aliases
-if type eza &> /dev/null; then
+if command -v eza &> /dev/null; then
 	alias ls='eza'
 	alias l='eza -l --git'
 	alias ll='eza -l --git'
 	alias lh='eza -lh --git'
 	alias la='eza -lah --git'
 	alias tree='eza -T'
-elif type exa &> /dev/null; then
+elif command -v exa &> /dev/null; then
 	alias ls='exa'
 	alias l='exa -l --git'
 	alias ll='exa -l --git'
@@ -147,19 +153,19 @@ else
 	alias la='ls -lah --color=auto'
 fi
 
-if type bat &> /dev/null ; then
+if command -v bat &> /dev/null ; then
 	alias cat='bat --theme ansi'
 fi
 
-if !type hostname &> /dev/null; then
+if !command -v hostname &> /dev/null; then
 	alias hostname='/bin/cat /etc/hostname; echo'
 fi
 
 alias up='cd ..'
-alias refsh='exec `which zsh` -l'
+alias refsh='exec zsh -l'
 alias neofetch='curl -s https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch | bash'
 alias print256colours='curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash'
-if type ghq &> /dev/null ; then
+if command -v ghq &> /dev/null ; then
 	alias cdghq='cd $(ghq root); ghq list'
 fi
 
@@ -168,7 +174,7 @@ supp() {
 	"$@" &> /dev/null < /dev/null
 }
 
-if type yt-dlp > /dev/null 2>&1; then
+if command -v yt-dlp &> /dev/null; then
 	youtube_mp3() {
 		yt-dlp $1 -f bestaudio --extract-audio
 	}
@@ -178,7 +184,9 @@ if type yt-dlp > /dev/null 2>&1; then
 fi
 
 ssh-add-keys() {
-	eval `ssh-agent -s`
+	if ! pgrep ssh-agent > /dev/null 2>&1; then
+		eval "$(ssh-agent -s)"
+	fi
 	find ~/.ssh -type f -name "id_*" -not -name "*.pub" | xargs ssh-add
 }
 
@@ -204,7 +212,7 @@ ipmitool_on() {
 }
 
 ipmitool_off() {
-	if [ ! -e `where ipmitool` ]; then
+	if ! command -v ipmitool &> /dev/null; then
 		echo "ipmitool not found"
 		return 1
 	fi
@@ -214,12 +222,3 @@ ipmitool_off() {
 	fi
 	$DOTFILES/scripts/ipmitool.py $1 "off"
 }
-
-# Import Scripts
-if [[ -d $DOTFILES/bin ]]; then
-	export PATH="$PATH:$DOTFILES/bin"
-fi
-
-if [[ -d $DOTFILES_LOCAL/bin ]]; then
-	export PATH="$PATH:$DOTFILES_LOCAL/bin"
-fi
