@@ -118,6 +118,11 @@ case `uname -s` in
 	*);;
 esac
 
+# Import zshrc from dotfiles-local
+if [[ -f $DOTFILES_LOCAL/zsh/.zshrc ]]; then
+	source $DOTFILES_LOCAL/zsh/.zshrc
+fi
+
 # Completion
 ## fzf
 if command -v fzf &> /dev/null; then
@@ -168,8 +173,8 @@ alias print256colours='curl -s https://gist.githubusercontent.com/HaleTom/89ffe3
 
 if command -v ghq &> /dev/null ; then
 	if command -v fzf &> /dev/null; then
-		alias cdghq='cd $(ghq root); cd $(ghq list | fzf)'
-		alias updghq='cd $(ghq root); ghq get -u $(ghq list | fzf)'
+		alias cdghq='cd $(ghq root); cd $(ghq list | fzf --reverse --height 40%)'
+		alias updghq='cd $(ghq root); ghq get -u $(ghq list | fzf --reverse --height 40%)'
 	else
 		alias cdghq='cd $(ghq root); ghq list'
 	fi
