@@ -48,6 +48,14 @@ elif type vim > /dev/null 2>&1; then
 	export SUDO_EDITOR=vim
 fi
 
+if command -v ghq &> /dev/null; then
+	export DOTFILES=$(ghq root)/$(ghq list | grep "Forest0923/dotfiles")
+	export DOTFILES_LOCAL=$(ghq root)/$(ghq list | grep "$USER/dotfiles-local")
+else
+	export DOTFILES=$HOME/dotfiles
+	export DOTFILES_LOCAL=$HOME/dotfiles-local
+fi
+
 # Alias
 if type eza &> /dev/null; then
 	alias ls='eza'
@@ -120,8 +128,8 @@ setup_prompt() {
 
 PROMPT_COMMAND=setup_prompt
 
-if [ -f $HOME/dotfiles/local/prompt/prompt.sh ]; then
-	source $HOME/dotfiles/local/prompt/prompt.sh
+if [ -f $DOTFILES_LOCAL/prompt/prompt.sh ]; then
+	source $DOTFILES_LOCAL/prompt/prompt.sh
 fi
 
 if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
@@ -143,24 +151,12 @@ bind 'set show-all-if-ambiguous on'
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # Import Scripts
-if [ -d $HOME/dotfiles/bin ] && [[ ! :$PATH: =~ *:"$HOME/dotfiles/bin":* ]];then
-	export PATH="$HOME/dotfiles/bin:$PATH"
+if [ -d $DOTFILES/bin ] && [[ ! :$PATH: =~ *:"$DOTFILES/bin":* ]];then
+	export PATH="$DOTFILES/bin:$PATH"
 fi
 
-if [ -d $HOME/dotfiles/scripts ];then
-	for src in `find $HOME/dotfiles/scripts -type f -name "*.sh"`; do
-		source ${src}
-	done
-fi
-
-if [ -d $HOME/dotfiles/local/bin ] && [[ ! :$PATH: =~ *:"$HOME/dotfiles/local/bin":* ]];then
-	export PATH="$HOME/dotfiles/local/bin:$PATH"
-fi
-
-if [ -d $HOME/dotfiles/local/scripts ];then
-	for src in `find $HOME/dotfiles/local/scripts -type f -name "*.sh"`; do
-		source ${src}
-	done
+if [ -d $DOTFILES_LOCAL/bin ] && [[ ! :$PATH: =~ *:"$DOTFILES_LOCAL/bin":* ]];then
+	export PATH="$DOTFILES_LOCAL/bin:$PATH"
 fi
 
 # SSH_AUTH_SOCK
